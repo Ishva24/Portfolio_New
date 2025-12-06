@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishva C | AI & Software Developer</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar">
+        <div class="logo">Ishva<span class="highlight">.dev</span></div>
+        <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Background Orbs -->
+        <div class="hero-bg-elements">
+            <div class="glowing-orb orb-1"></div>
+            <div class="glowing-orb orb-2"></div>
+        </div>
+
+        <div class="hero-content" data-aos="fade-up">
+            <p class="hero-greeting">👋 Hi, I'm</p>
+            <h1 class="hero-name">Ishva C<span>Building AI-Driven Solutions</span></h1>
+            <div class="typewriter-text" id="typewriter"></div>
+
+            <div class="cta-buttons">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+
+        <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="200">
+            <div class="hero-blob"></div>
+            <div class="hero-img-placeholder">
+                <!-- User can replace this with actual image -->
+                <img src="profile.jpeg" alt="Ishva C">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-text" data-aos="fade-right">
+                <p>
+                    🎓 I'm a motivated <strong>Computer Science graduate</strong> with a strong foundation in Python and
+                    SQL.
+                    I have a passion for solving real-world challenges using <strong>Artificial Intelligence, Machine
+                        Learning, and Deep Learning</strong>.
+                </p>
+                <p>
+                    🚀 My journey involves building diagnostically accurate AI models, engaging chatbots, and innovative
+                    virtual systems.
+                    I thrive in collaborative environments and love turning complex data into actionable insights
+                    effectively.
+                </p>
+                <p>
+                    🎯 Currently, I'm seeking a software development role where I can leverage my skills to create
+                    impactful software solutions.
+                </p>
+
+                <div class="key-highlights">
+                    <span class="highlight-badge"><i class="fas fa-brain"></i> AI/ML Enthusiast</span>
+                    <span class="highlight-badge"><i class="fas fa-code"></i> Python Developer</span>
+                    <span class="highlight-badge"><i class="fas fa-chart-line"></i> Data Analytics</span>
+                    <span class="highlight-badge"><i class="fas fa-robot"></i> IT Automation</span>
+                </div>
+            </div>
+
+            <div class="education-summary" data-aos="fade-left">
+                <!-- Brief Education highlight in About or save for Education section? Let's strictly follow sections -->
+                <!-- Keeping about text focused for now -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container">
+
+            <!-- Programming & Libraries -->
+            <div class="skill-category" data-aos="fade-up">
+                <h3><i class="fas fa-laptop-code"></i> Programming & Libraries</h3>
+
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Python</span><span>90%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>SQL</span><span>85%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>TensorFlow / PyTorch</span><span>80%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Sci-Kit Learn</span><span>85%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Java / C++</span><span>75%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Fields -->
+            <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Pandas / Data Analysis</span><span>90%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Tableau</span><span>70%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Streamlit</span><span>80%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>FastAPI</span><span>75%</span></div>
+                    <div class="skill-progress-bg">
+                        <div class="skill-progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <!-- Item 1: Intern -->
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">July 2024 - Dec 2024</div>
+                    <h3>Intern</h3>
+                    <h4>Acmegrade</h4>
+                    <ul>
+                        <li>Assisted in development and testing of ERP modules.</li>
+                        <li>Contributed to 15% process efficiency improvement by reporting 50+ bugs.</li>
+                        <li>Participated in requirements gathering for new features.</li>
+                        <li>Applied data analysis to design enhancements, reducing development time by 20%.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Education as part of timeline/journey? Or separate? User asked for Experience section. I will put Education below separately to be distinct -->
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" style="background: #0d0d19;">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            <!-- M.Sc -->
+            <div class="timeline-item right" data-aos="fade-left">
+                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2024 - 2026</div>
+                    <h3>Master of Science</h3>
+                    <h4>Karunya University, Coimbatore</h4>
+                    <p>Minor in Artificial Intelligence</p>
+                    <p><strong>CGPA:</strong> 8.2</p>
+                </div>
+            </div>
+
+            <!-- B.Sc -->
+            <div class="timeline-item left" data-aos="fade-right">
+                <div class="icon"><i class="fas fa-university"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2021 - 2024</div>
+                    <h3>Bachelor of Science</h3>
+                    <h4>Karunya University, Coimbatore</h4>
+                    <p>Minor in Computer Science</p>
+                    <p><strong>CGPA:</strong> 8.75</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+
+            <!-- Project 1 -->
+            <div class="project-card" data-aos="zoom-in">
+                <div class="project-img"><i class="fas fa-tshirt"></i></div>
+                <div class="project-content">
+                    <h3>Virtual Try-On System</h3>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Tailwind</span>
+                        <span class="tag">MediaPipe</span>
+                    </div>
+                    <p>Designed a full-stack system allowing users to digitally try on clothes. Integrated rembg and
+                        OutfitAnyone model on Google Colab for realistic processing.</p>
+                    <div class="project-links">
+                        <a href="#" class="link-icon" title="View Code"><i class="fab fa-github"></i></a>
+                        <!-- <a href="#" class="link-icon" title="Live Demo"><i class="fas fa-external-link-alt"></i></a> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="project-img"><i class="fas fa-brain"></i></div>
+                <div class="project-content">
+                    <h3>Brain Tumor Detection</h3>
+                    <div class="project-tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Medical Imaging</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <p>Engineered an advanced ML model for brain tumor detection using MRI scans. Achieved a 95%
+                        accuracy rate and reduced diagnostic time by 40%.</p>
+                    <div class="project-links">
+                        <a href="#" class="link-icon" title="View Code"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" style="background: #0d0d19;">
+        <h2 class="section-title">Certifications</h2>
+        <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="project-card" data-aos="fade-up" style="text-align: center; padding: 20px;">
+                <i class="fab fa-google" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+                <h3>IT Automation with Python</h3>
+                <p>Google Tata Strive, Coursera (2024)</p>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100"
+                style="text-align: center; padding: 20px;">
+                <i class="fab fa-microsoft" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <h3>Fundamentals of AI</h3>
+                <p>Microsoft Azure (2024)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container" data-aos="flip-up">
+
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email Me</h3>
+                <a href="mailto:ishva006@gmail.com">ishva006@gmail.com</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/Ishva24" target="_blank">linkedin.com/in/Ishva24</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                <h3>Call Me</h3>
+                <a href="tel:9677631401">9677631401</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Ishva C. All rights reserved.</p>
+        <p>Built with <i class="fas fa-heart" style="color: var(--accent);"></i> and Code.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
