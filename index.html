@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ishva C | AI Systems Engineer & Data Scientist</title>
+    <meta name="description" content="Ishva Chinnasamy - Data Scientist, AI/ML Engineer, and Data Analyst Portfolio. Showcasing end-to-end AI systems, ETL pipelines, and BI dashboards.">
+    <meta name="keywords" content="Ishva Chinnasamy, AI Engineer, ML Engineer, Data Scientist, Data Analyst, Portfolio, PyTorch, React, Docker, SQL, Python">
+    <meta name="author" content="Ishva Chinnasamy">
+    <title>Ishva Chinnasamy | Data Scientist & AI/ML Engineer</title>
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome (Icons) -->
@@ -16,15 +19,15 @@
 <body>
 
     <!-- Header / Navbar -->
-    <nav class="navbar">
-        <div class="logo">Ishva<span class="highlight">.ai</span></div>
-        <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <ul class="nav-links">
+    <nav class="navbar" id="navbar">
+        <div class="logo" id="nav-logo">Ishva<span class="highlight">.dev</span></div>
+        <button class="mobile-menu-btn" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="nav-menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -32,19 +35,21 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <!-- Background Orbs -->
         <div class="hero-bg-elements">
             <div class="glowing-orb orb-1"></div>
             <div class="glowing-orb orb-2"></div>
         </div>
 
         <div class="hero-content" data-aos="fade-up">
-            <p class="hero-greeting">🖥️ System.init()</p>
-            <h1 class="hero-name">Ishva C<span>Architecting Full-Stack AI Pipelines</span></h1>
+            <p class="hero-greeting">👋 Hi, I'm</p>
+            <h1 class="hero-name">Ishva Chinnasamy</h1>
             <div class="typewriter-text" id="typewriter"></div>
+            <p class="hero-subtext">M.Sc. in Artificial Intelligence graduate specializing in building production-grade AI systems, automated ETL pipelines, and interactive BI dashboards.</p>
 
             <div class="cta-buttons">
-                <a href="#projects" class="btn">Explore Architectures</a>
-                <a href="https://linkedin.com/in/Ishva24" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                <a href="#projects" class="btn" id="cta-view-work">Explore Projects</a>
+                <a href="Ishva_Resume_Final.pdf" class="btn btn-secondary" id="cta-download-resume" download><i class="fas fa-file-download"></i> Get Resume</a>
             </div>
         </div>
 
@@ -58,210 +63,339 @@
 
     <!-- About Section -->
     <section id="about" class="about">
-        <h2 class="section-title">The Data Lifecycle Narrative</h2>
+        <h2 class="section-title">About Me</h2>
         <div class="about-container">
             <div class="about-text" data-aos="fade-right">
                 <p>
-                    I am an AI Systems Engineer and Data Scientist holding an <strong>M.Sc. in Artificial Intelligence</strong>. My core expertise lies in designing end-to-end data pipelines, evaluating deep learning architectures, and deploying secure inference environments.
+                    🎓 I am a <strong>computer science graduate</strong> who speaks fluent Python, conversational SQL, and broken CSS. I hold an M.Sc. in Artificial Intelligence, which means I can explain complex neural network weights but still struggle to explain what I do to my parents.
                 </p>
                 <p>
-                    My technical strategy treats AI models as part of a larger engineering system. I specialize in optimizing data ingestions (ETL), implementing protocol-level AI security gateways, and rendering predictions interpretable for high-stakes domains like healthcare.
+                    🚀 My day-to-day work involves engineering clinically-aligned medical vision systems, creating security proxies to stop LLMs from breaking database tables, and debugging applications by staring at stack traces until they get intimidated and fix themselves.
+                </p>
+                <p>
+                    🎯 <strong>The Mission:</strong> Build production-grade backends, data pipelines, and analytics suites that don't crash when someone inputs "hello world" in production. Seeking a growth-oriented role where my coffee-to-code pipeline runs with 99.9% uptime.
                 </p>
 
                 <div class="key-highlights">
-                    <span class="highlight-badge"><i class="fas fa-shield-halved"></i> Zero-Trust AI Security</span>
-                    <span class="highlight-badge"><i class="fas fa-brain"></i> Deep Learning & CV</span>
-                    <span class="highlight-badge"><i class="fas fa-database"></i> Analytics & ETL</span>
-                    <span class="highlight-badge"><i class="fas fa-cubes"></i> Full-Stack MERN/Python</span>
+                    <span class="highlight-badge"><i class="fas fa-brain"></i> ML & Deep Learning</span>
+                    <span class="highlight-badge"><i class="fas fa-database"></i> ETL & Data Engineering</span>
+                    <span class="highlight-badge"><i class="fas fa-shield-alt"></i> AI Security & MLOps</span>
+                    <span class="highlight-badge"><i class="fas fa-chart-bar"></i> BI & Data Analytics</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Technical Skills Matrix</h2>
-        <div class="skills-container">
+            <!-- Terminal Mockup (Balancing the Left-sided Layout) -->
+            <div class="about-terminal" data-aos="fade-left" id="about-terminal-mockup">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <div class="terminal-title">developer_workflow.py</div>
+                </div>
+                <div class="terminal-body">
+                    <pre><code><span class="terminal-keyword">import</span> time
+<span class="terminal-keyword">from</span> developer <span class="terminal-keyword">import</span> Coffee, Brain, Terminal
 
-            <!-- Machine Learning & AI -->
-            <div class="skill-category" data-aos="fade-up">
-                <h3><i class="fas fa-brain"></i> Machine Learning & AI</h3>
-                <div class="skill-bar"><div class="skill-info"><span>PyTorch / TensorFlow / Keras</span><span>90%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 90%"></div></div></div>
-                <div class="skill-bar"><div class="skill-info"><span>Computer Vision (CNN, Swin Transformer)</span><span>88%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 88%"></div></div></div>
-                <div class="skill-bar"><div class="skill-info"><span>Model Explainability (GradCAM, CBM)</span><span>85%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 85%"></div></div></div>
-                <div class="skill-bar"><div class="skill-info"><span>Scikit-Learn / Predictive Modeling</span><span>85%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 85%"></div></div></div>
-            </div>
-
-            <!-- Engineering & Architecture -->
-            <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                <h3><i class="fas fa-network-wired"></i> Infrastructure & Full-Stack</h3>
-                <div class="skill-bar"><div class="skill-info"><span>Python / TypeScript / SQL</span><span>90%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 90%"></div></div></div>
-                <div class="skill-bar"><div class="skill-info"><span>Data Engineering (ETL Pipelines, MySQL)</span><span>85%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 85%"></div></div></div>
-                <div class="skill-bar"><div class="skill-info"><span>Deployment (Docker, Docker Compose, FastAPI)</span><span>80%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 80%"></div></div></div>
-                <div class="skill-bar"><div class="skill-info"><span>Business Intelligence (Tableau, Power BI)</span><span>75%</span></div><div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 75%"></div></div></div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2 class="section-title">Industry Impact</h2>
-        <div class="timeline">
+<span class="terminal-keyword">def</span> <span class="terminal-function">run_developer_day</span>(coffee_input):
+    fuel = Coffee.consume(coffee_input) <span class="terminal-comment"># Espresso required</span>
+    brain_state = Brain.initialize(fuel)
+    
+    <span class="terminal-keyword">while</span> brain_state.is_active:
+        code = brain_state.write_code()
+        <span class="terminal-keyword">try</span>:
+            Terminal.run_tests(code)
+            <span class="terminal-keyword">break</span>
+        <span class="terminal-keyword">except</span> BugDetected <span class="terminal-keyword">as</span> error:
+            brain_state.stare_intently(error)
+            time.sleep(<span class="terminal-number">300</span>) <span class="terminal-comment"># Staring at it helps</span>
             
-            <!-- Gravity AI -->
-            <div class="timeline-item left" data-aos="fade-right">
-                <div class="icon"><i class="fas fa-chart-line"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">December 2025 - May 2026</div>
-                    <h3>Data Analyst Intern</h3>
-                    <h4>Gravity AI</h4>
-                    <ul>
-                        <li>Engineered Python-based ETL pipelines to ingest, clean, and transform labor market datasets, increasing operational pipeline efficiency by 25%.</li>
-                        <li>Built automated data validation frameworks to systematically enforce 98%+ data accuracy metrics across production environments.</li>
-                        <li>Designed interactive Tableau and Power BI dashboards, translating high-volume warehouse records into clear business intelligence indicators.</li>
-                        <li>Partnered directly with engineering squads to turn product parameters into code solutions, driving feature development cycles 30% faster.</li>
-                    </ul>
-                </div>
-            </div>
+    <span class="terminal-keyword">return</span> <span class="terminal-string">"🚀 Deployed to Prod!"</span>
 
-            <!-- Acmegrade -->
-            <div class="timeline-item right" data-aos="fade-left">
-                <div class="icon"><i class="fas fa-code"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">July 2024 - December 2024</div>
-                    <h3>Software Intern</h3>
-                    <h4>Acmegrade</h4>
-                    <ul>
-                        <li>Assisted with structural development and cross-functional quality testing of enterprise ERP modules.</li>
-                        <li>Isolated, tracked, and thoroughly logged 50+ application bugs, boosting general process execution efficiency by 15%.</li>
-                        <li>Utilized target data analysis trends during iterative design meetings, lowering engineering development timeline constraints by 20%.</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" style="background: #0d0d19;">
-        <h2 class="section-title">Academic Background</h2>
-        <div class="timeline">
-            <div class="timeline-item right" data-aos="fade-left">
-                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2024 - 2026</div>
-                    <h3>Master of Science - Artificial Intelligence</h3>
-                    <h4>Karunya University, Coimbatore</h4>
-                    <p><strong>CGPA:</strong> 8.2</p>
-                </div>
-            </div>
-            <div class="timeline-item left" data-aos="fade-right">
-                <div class="icon"><i class="fas fa-university"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2021 - 2024</div>
-                    <h3>Bachelor of Science - Computer Science</h3>
-                    <h4>Karunya University, Coimbatore</h4>
-                    <p><strong>CGPA:</strong> 8.75</p>
+print(run_developer_day(<span class="terminal-string">"Espresso"</span>))</code></pre>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">Production Architectures</h2>
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
 
             <!-- Project 1: Skin Scan AI -->
-            <div class="project-card" data-aos="zoom-in">
-                <div class="project-img"><i class="fas fa-notes-medical"></i></div>
+            <div class="project-card" data-aos="zoom-in" id="project-skin-scan">
+                <div class="project-img"><img src="assets/skin_scan.png" alt="Skin Scan AI Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
                 <div class="project-content">
+                    <div class="project-role-badge">AI/ML Engineering</div>
                     <h3>Skin Scan AI (DermaCon-IN)</h3>
                     <div class="project-tags">
-                        <span class="tag">Swin Transformer</span>
                         <span class="tag">PyTorch</span>
                         <span class="tag">Flask</span>
                         <span class="tag">React 18</span>
-                        <span class="tag">MySQL</span>
+                        <span class="tag">Swin Transformer</span>
+                        <span class="tag">Docker</span>
                     </div>
-                    <p>Full-stack clinical screening tool classifying 20+ skin conditions. Employs model ensembles combining Swin Transformers and Concept Bottleneck Models (CBM) with GradCAM for explainable outputs, plus triage logic and local doctor scheduling integrations.</p>
+                    <p>Built a full-stack AI screening system classifying 20+ skin conditions. Combines a Swin Transformer + Concept Bottleneck Model for interpretable, clinically-aligned diagnostics with GradCAM heatmaps.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Skin-Scan" target="_blank" class="link-icon"><i class="fab fa-github"></i> Source</a>
+                        <a href="https://github.com/Ishva24/Skin-Scan" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
             <!-- Project 2: Guardian-MCP -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="project-img"><i class="fas fa-shield-halved"></i></div>
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="100" id="project-guardian-mcp">
+                <div class="project-img"><img src="assets/guardian_mcp.png" alt="Guardian-MCP Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
                 <div class="project-content">
+                    <div class="project-role-badge">AI Security / Software Eng</div>
                     <h3>Guardian-MCP Gateway</h3>
                     <div class="project-tags">
                         <span class="tag">TypeScript</span>
-                        <span class="tag">Model Context Protocol</span>
-                        <span class="tag">JWT RS256</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">JWT (RS256)</span>
                         <span class="tag">SSE</span>
+                        <span class="tag">Docker Compose</span>
                     </div>
-                    <p>An enterprise-grade Zero-Trust middleware proxy securing connections between autonomous LLM agents and data layer layers. Implements a 6-stage runtime protection pipeline incorporating asymmetric JWT tokens, scope validation, and semantic injection parsing.</p>
+                    <p>Designed a Zero-Trust security middleware proxy for the Model Context Protocol (MCP). Implements asymmetric JWT authentication, role-based scopes, and real-time semantic argument checks to prevent prompt injections.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Guardian-MCP" target="_blank" class="link-icon"><i class="fab fa-github"></i> Source</a>
+                        <a href="https://github.com/Ishva24/Guardian-MCP" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3: Brain Tumor Detection -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-                <div class="project-img"><i class="fas fa-brain"></i></div>
+            <!-- Project 3: LaborMarket-ETL -->
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="200" id="project-labor-etl">
+                <div class="project-img"><img src="assets/labor_etl.png" alt="LaborMarket-ETL Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
                 <div class="project-content">
-                    <h3>MRI Brain Tumor Detection</h3>
+                    <div class="project-role-badge">Data Analysis & Engineering</div>
+                    <h3>LaborMarket-ETL Pipeline</h3>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Tableau</span>
+                    </div>
+                    <p>Developed an automated end-to-end pipeline to ingest job market datasets, perform data cleaning and imputation, load into normalized MySQL schemas, and build interactive Tableau dashboards for salary analytics.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/LaborMarket-ETL" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project: DocuQuery-RAG -->
+            <div class="project-card" data-aos="zoom-in" id="project-rag">
+                <div class="project-img"><img src="assets/rag.png" alt="DocuQuery-RAG Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="project-content">
+                    <div class="project-role-badge">MLOps & GenAI</div>
+                    <h3>DocuQuery-RAG Pipeline</h3>
+                    <div class="project-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Pinecone</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Ragas</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                    <p>Designed a production-ready Retrieval-Augmented Generation (RAG) system with semantic chunking, vector index rotation, and automated pipeline quality evaluation using Ragas metrics.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/DocuQuery-RAG" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project: FinInsight -->
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="100" id="project-fininsight">
+                <div class="project-img"><img src="assets/fininsight.png" alt="FinInsight Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="project-content">
+                    <div class="project-role-badge">Analytics Engineering</div>
+                    <h3>FinInsight Analytics Pipeline</h3>
+                    <div class="project-tags">
+                        <span class="tag">DuckDB</span>
+                        <span class="tag">dbt</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">CI/CD</span>
+                    </div>
+                    <p>Built a modern analytics engineering pipeline ingestion layer using DuckDB, running data transformations and schema testing with dbt, and publishing real-time transaction summaries on Streamlit.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/FinInsight-Analytics" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Brain Tumor Detection -->
+            <div class="project-card" data-aos="zoom-in" id="project-brain-tumor">
+                <div class="project-img"><img src="assets/brain_tumor.png" alt="Brain Tumor MRI Detection Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
+                <div class="project-content">
+                    <div class="project-role-badge">Data Science / Computer Vision</div>
+                    <h3>Brain Tumor MRI Detection</h3>
                     <div class="project-tags">
                         <span class="tag">TensorFlow</span>
+                        <span class="tag">Keras</span>
                         <span class="tag">CNN</span>
                         <span class="tag">OpenCV</span>
-                        <span class="tag">Medical AI</span>
                     </div>
-                    <p>Deep Learning CNN pipeline configured for imbalanced medical datasets. Achieved a 95% evaluation accuracy metric on MRI images and demonstrated a simulated 40% reduction in turnaround time barriers during model validations.</p>
+                    <p>Engineered a deep learning classifier achieving 95% detection accuracy on MRI scans. Features image augmentation and histogram equalization, reducing clinical turnaround time estimation by 40%.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Brain-tumor-detection" target="_blank" class="link-icon"><i class="fab fa-github"></i> Source</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4: Virtual Try-On -->
-            <div class="project-card" data-aos="zoom-in">
-                <div class="project-img"><i class="fas fa-shirt"></i></div>
-                <div class="project-content">
-                    <h3>Virtual Try-On System</h3>
-                    <div class="project-tags">
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">MediaPipe</span>
-                        <span class="tag">OutfitAnyone</span>
-                        <span class="tag">Google Colab</span>
-                    </div>
-                    <p>Full-stack digital try-on application featuring human posture tracking. Chains automated background removal components together with generative image synthesis steps to overlay new clothing items onto user profiles realistically.</p>
-                    <div class="project-links">
-                        <a href="#" class="link-icon"><i class="fab fa-github"></i> Source</a>
+                        <a href="https://github.com/Ishva24/Brain_tumor_detection" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
             </div>
 
             <!-- Project 5: Diabetes Prediction -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-                <div class="project-img"><i class="fas fa-chart-pie"></i></div>
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="100" id="project-diabetes">
+                <div class="project-img"><img src="assets/diabetes.png" alt="Diabetes Diagnostic Prediction Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
                 <div class="project-content">
-                    <h3>Diabetes Prediction Pipeline</h3>
+                    <div class="project-role-badge">Data Science / Machine Learning</div>
+                    <h3>Diabetes Diagnostic Prediction</h3>
                     <div class="project-tags">
-                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">scikit-learn</span>
                         <span class="tag">Random Forest</span>
                         <span class="tag">Pandas</span>
-                        <span class="tag">Evaluation</span>
+                        <span class="tag">Hyperparameter Tuning</span>
                     </div>
-                    <p>End-to-end classification pipeline mapping clinical features to early diabetic health risk markers. Reached an 85% validation accuracy using a tuned Random Forest engine checked via cross-validation and rigorous ROC-AUC testing.</p>
+                    <p>Optimized a diagnostic predictor reaching 85% accuracy. Implemented the complete pipeline from feature engineering and handling missing values to model evaluation using ROC-AUC.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Diabetes-Prediction" target="_blank" class="link-icon"><i class="fab fa-github"></i> Source</a>
-                        <a href="https://ishva24.github.io/Diabetes_Prediction/" target="_blank" class="link-icon"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <a href="https://github.com/Ishva24/Diabetes_Prediction" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://ishva24.github.io/Diabetes_Prediction/" class="link-icon" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i> Demo</a>
                     </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="timeline">
+            <!-- Item 1: Gravity AI -->
+            <div class="timeline-item left" data-aos="fade-right" id="exp-gravity">
+                <div class="icon"><i class="fas fa-chart-bar"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Dec 2025 - May 2026</div>
+                    <h3>Data Analyst Intern</h3>
+                    <h4>Gravity AI</h4>
+                    <ul>
+                        <li>Built Python-based ETL pipelines to ingest, clean, and transform labor market datasets, increasing pipeline efficiency by 25%.</li>
+                        <li>Performed exploratory data analysis (EDA) on employment trends using Pandas and NumPy to surface insights for strategy teams.</li>
+                        <li>Implemented automated validation frameworks, achieving 98%+ data accuracy across all production datasets.</li>
+                        <li>Developed interactive Tableau and Power BI dashboards translating complex raw metrics into business intelligence.</li>
+                        <li>Collaborated with product and engineering teams, contributing to 30% faster feature development cycles.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Item 2: Acmegrade -->
+            <div class="timeline-item right" data-aos="fade-left" id="exp-acmegrade">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Jul 2024 - Dec 2024</div>
+                    <h3>Software Intern</h3>
+                    <h4>Acmegrade</h4>
+                    <ul>
+                        <li>Assisted in development and testing of enterprise ERP modules; reported 50+ bugs, improving process efficiency by 15%.</li>
+                        <li>Participated in requirement-gathering and data analysis in cross-functional meetings, reducing development time by 20%.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" style="background: #0d0d19;">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            <!-- M.Sc -->
+            <div class="timeline-item right" data-aos="fade-left" id="edu-msc">
+                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2024 - 2026</div>
+                    <h3>Master of Science</h3>
+                    <h4>Karunya University, Coimbatore</h4>
+                    <p>Minor in Artificial Intelligence</p>
+                    <p><strong>CGPA:</strong> 8.2</p>
+                </div>
+            </div>
+
+            <!-- B.Sc -->
+            <div class="timeline-item left" data-aos="fade-right" id="edu-bsc">
+                <div class="icon"><i class="fas fa-university"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2021 - 2024</div>
+                    <h3>Bachelor of Science</h3>
+                    <h4>Karunya University, Coimbatore</h4>
+                    <p>Minor in Computer Science</p>
+                    <p><strong>CGPA:</strong> 8.75</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid-container">
+
+            <!-- Category 1 -->
+            <div class="skill-group" data-aos="fade-up" id="skills-ai-ml">
+                <h3><i class="fas fa-brain"></i> Machine Learning & AI</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">PyTorch</span>
+                    <span class="skill-badge">TensorFlow</span>
+                    <span class="skill-badge">Keras</span>
+                    <span class="skill-badge">scikit-learn</span>
+                    <span class="skill-badge">CNNs</span>
+                    <span class="skill-badge">Swin Transformers</span>
+                    <span class="skill-badge">Computer Vision</span>
+                    <span class="skill-badge">Concept Bottleneck Models</span>
+                    <span class="skill-badge">OpenCV</span>
+                    <span class="skill-badge">GradCAM</span>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="skill-group" data-aos="fade-up" data-aos-delay="100" id="skills-data-bi">
+                <h3><i class="fas fa-chart-pie"></i> Data Analytics & BI</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">Pandas</span>
+                    <span class="skill-badge">NumPy</span>
+                    <span class="skill-badge">Tableau</span>
+                    <span class="skill-badge">Power BI</span>
+                    <span class="skill-badge">Streamlit</span>
+                    <span class="skill-badge">Seaborn</span>
+                    <span class="skill-badge">Matplotlib</span>
+                    <span class="skill-badge">EDA</span>
+                    <span class="skill-badge">A/B Testing</span>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="skill-group" data-aos="fade-up" data-aos-delay="200" id="skills-mleps">
+                <h3><i class="fas fa-server"></i> MLOps & Deployment</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">Flask</span>
+                    <span class="skill-badge">FastAPI</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">Docker Compose</span>
+                    <span class="skill-badge">REST APIs</span>
+                    <span class="skill-badge">ETL Pipelines</span>
+                    <span class="skill-badge">JWT Authentication</span>
+                    <span class="skill-badge">Server-Sent Events</span>
+                    <span class="skill-badge">Git & GitHub</span>
+                </div>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="skill-group" data-aos="fade-up" data-aos-delay="300" id="skills-languages">
+                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">TypeScript</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">C++</span>
                 </div>
             </div>
 
@@ -270,57 +404,63 @@
 
     <!-- Certifications -->
     <section id="certifications" style="background: #0d0d19;">
-        <h2 class="section-title">Verified Credentials</h2>
+        <h2 class="section-title">Certifications</h2>
         <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <div class="project-card" style="text-align: center; padding: 30px;">
-                <i class="fab fa-google" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                <h3>Google Data Analytics</h3>
-                <p>Coursera Professional Credential</p>
+            <div class="project-card" data-aos="fade-up" style="text-align: center; padding: 25px;" id="cert-python">
+                <i class="fab fa-google" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+                <h3>IT Automation with Python</h3>
+                <p>Google / Tata Strive & Coursera (2024)</p>
             </div>
-            <div class="project-card" style="text-align: center; padding: 30px;">
-                <i class="fab fa-google" style="font-size: 2.5rem; color: var(--accent); margin-bottom: 15px;"></i>
-                <h3>Google IT Automation</h3>
-                <p>Python Automation with Git & Configuration</p>
-            </div>
-            <div class="project-card" style="text-align: center; padding: 30px;">
-                <i class="fab fa-microsoft" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100" style="text-align: center; padding: 25px;" id="cert-azure">
+                <i class="fab fa-microsoft" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
                 <h3>Fundamentals of AI</h3>
-                <p>Microsoft Azure Institutional Certification</p>
+                <p>Microsoft Azure (2024)</p>
+            </div>
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200" style="text-align: center; padding: 25px;" id="cert-data">
+                <i class="fab fa-google" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+                <h3>Google Data Analytics</h3>
+                <p>Google & Coursera (2024)</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Secure a Collaboration</h2>
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get In Touch</h2>
         <div class="contact-container" data-aos="flip-up">
-            <div class="contact-card">
+
+            <div class="contact-card" id="contact-email">
                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                <h3>Email Gateway</h3>
+                <h3>Email Me</h3>
                 <a href="mailto:ishva006@gmail.com">ishva006@gmail.com</a>
             </div>
-            <div class="contact-card">
+
+            <div class="contact-card" id="contact-linkedin">
                 <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                <h3>Professional Network</h3>
+                <h3>LinkedIn</h3>
                 <a href="https://linkedin.com/in/Ishva24" target="_blank">linkedin.com/in/Ishva24</a>
             </div>
-            <div class="contact-card">
+
+            <div class="contact-card" id="contact-phone">
                 <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                <h3>Direct Communications</h3>
+                <h3>Call Me</h3>
                 <a href="tel:+919677631401">+91 9677631401</a>
             </div>
+
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Ishva C. All rights reserved.</p>
-        <p>Built using modular CSS structures and semantic component rules.</p>
+        <p>© 2026 Ishva Chinnasamy. All rights reserved.</p>
+        <p>Built with <i class="fas fa-heart" style="color: var(--accent);"></i>, HTML, CSS, and Javascript.</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <script src="script.js"></script>
 </body>
 

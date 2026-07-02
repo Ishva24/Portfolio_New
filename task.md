@@ -1,0 +1,28 @@
+# Task: Build Portfolio Website
+
+- [x] Analyze Requirements and Resume <!-- id: 0 -->
+    - [x] Find and read resume file <!-- id: 1 -->
+    - [x] Extract content for sections (Hero, About, Education, Experience, Projects, Skills, Certifications, Contact) <!-- id: 2 -->
+- [x] Planning <!-- id: 3 -->
+    - [x] Create implementation plan <!-- id: 4 -->
+    - [x] Define color palette and design system <!-- id: 5 -->
+- [x] Implementation <!-- id: 6 -->
+    - [x] Setup project structure (HTML, CSS, JS) <!-- id: 7 -->
+    - [x] Implement foundational styles (variables, reset, typography) <!-- id: 8 -->
+    - [x] Build Hero Section <!-- id: 9 -->
+    - [x] Build About Me Section <!-- id: 10 -->
+    - [x] Build Education Section <!-- id: 11 -->
+    - [x] Build Experience Section <!-- id: 12 -->
+    - [x] Build Projects Section <!-- id: 13 -->
+    - [x] Build Skills Section <!-- id: 14 -->
+    - [x] Build Certifications & Achievements Section <!-- id: 15 -->
+    - [x] Build Contact Section & Footer <!-- id: 16 -->
+    - [x] Add Animations (AOS/GSAP/Custom) <!-- id: 17 -->
+- [ ] Portfolio Revision: Add Diabetes Prediction Project <!-- id: 22 -->
+    - [x] Add "Diabetes Prediction" project card to `index.html` <!-- id: 23 -->
+    - [x] Add "Demo" button linking to `https://ishva24.github.io/Diabetes_Prediction/` <!-- id: 24 -->
+    - [x] Ensure styling consistency with existing projects <!-- id: 25 -->
+- [x] Verification <!-- id: 18 -->
+    - [x] Verify responsiveness <!-- id: 19 -->
+    - [x] Verify animations and interactivity <!-- id: 20 -->
+    - [x] Create walkthrough <!-- id: 21 -->

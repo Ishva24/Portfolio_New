@@ -1,0 +1,12 @@
+# Ignore assets folder containing project screenshots
+assets/
+
+# Ignore profile picture
+profile.jpeg
+
+# Ignore other image assets just in case
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
