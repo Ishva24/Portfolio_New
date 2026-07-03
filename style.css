@@ -715,3 +715,23 @@ footer p { color: var(--text-muted); font-size: 0.9rem; }
     
     .skills-container { grid-template-columns: 1fr; }
 }
+
+/* --- Fallback Icons for Missing Local Assets --- */
+.fallback-icon {
+    filter: drop-shadow(0 0 15px var(--accent-glow));
+    animation: iconPulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px var(--accent-glow));
+        opacity: 0.85;
+    }
+    100% {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 20px rgba(0, 210, 211, 0.7));
+        opacity: 1;
+    }
+}
+
