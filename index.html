@@ -4,344 +4,691 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ishva Chinnasamy - Data Scientist, AI/ML Engineer, and Data Analyst Portfolio. Showcasing end-to-end AI systems, ETL pipelines, and BI dashboards.">
-    <meta name="keywords" content="Ishva Chinnasamy, AI Engineer, ML Engineer, Data Scientist, Data Analyst, Portfolio, PyTorch, React, Docker, SQL, Python">
+    <meta name="description"
+        content="Ishva Chinnasamy — AI/ML Engineer & Data Scientist. Building production AI systems, ETL pipelines, and analytics products. Open to opportunities.">
+    <meta name="keywords"
+        content="Ishva Chinnasamy, AI Engineer, ML Engineer, Data Scientist, Data Analyst, Portfolio, PyTorch, FastAPI, Docker, RAG, Computer Vision">
     <meta name="author" content="Ishva Chinnasamy">
-    <title>Ishva Chinnasamy | Data Scientist & AI/ML Engineer</title>
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome (Icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Animation CSS -->
+    <meta name="theme-color" content="#07070c">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ishva Chinnasamy | AI/ML Engineer & Data Scientist">
+    <meta property="og:description"
+        content="Production-grade AI systems, medical vision, secure LLM gateways, and modern data pipelines.">
+    <meta property="og:image" content="profile.jpeg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ishva Chinnasamy | AI/ML Engineer">
+    <meta name="twitter:description" content="Portfolio of AI systems, data pipelines, and analytics products.">
+
+    <title>Ishva Chinnasamy | AI/ML Engineer & Data Scientist</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Scroll progress -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-    <!-- Header / Navbar -->
+    <!-- Custom cursor (desktop) -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursor-follower" aria-hidden="true"></div>
+
+    <!-- Navbar -->
     <nav class="navbar" id="navbar">
-        <div class="logo" id="nav-logo">Ishva<span class="highlight">.dev</span></div>
-        <button class="mobile-menu-btn" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+        <a href="#home" class="logo" id="nav-logo">
+            <span class="logo-mark">◈</span>
+            ishva<span class="logo-dot">.works</span>
+        </a>
+        <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="hamburger"></span>
+        </button>
         <ul class="nav-links" id="nav-menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+            <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+            <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+            <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+            <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+            <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+            <li>
+                <a href="Ishva_Resume_Final.pdf" class="nav-cta" download>
+                    <i class="fas fa-download"></i> Resume
+                </a>
+            </li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="hero">
-        <!-- Background Orbs -->
-        <div class="hero-bg-elements">
-            <div class="glowing-orb orb-1"></div>
-            <div class="glowing-orb orb-2"></div>
-        </div>
+        <div class="hero-grid-bg" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
 
-        <div class="hero-content" data-aos="fade-up">
-            <p class="hero-greeting">👋 Hi, I'm</p>
-            <h1 class="hero-name">Ishva Chinnasamy</h1>
-            <div class="typewriter-text" id="typewriter"></div>
-            <p class="hero-subtext">M.Sc. in Artificial Intelligence graduate specializing in building production-grade AI systems, automated ETL pipelines, and interactive BI dashboards.</p>
+        <div class="hero-inner">
+            <div class="hero-content" data-aos="fade-up">
+                <div class="availability-pill">
+                    <span class="pulse-dot"></span>
+                    Open to full-time & internship roles
+                </div>
 
-            <div class="cta-buttons">
-                <a href="#projects" class="btn" id="cta-view-work">Explore Projects</a>
-                <a href="Ishva_Resume_Final.pdf" class="btn btn-secondary" id="cta-download-resume" download><i class="fas fa-file-download"></i> Get Resume</a>
+                <p class="hero-greeting">Hi, recruiters & hiring managers — I'm</p>
+                <h1 class="hero-name">
+                    Ishva<br>
+                    <span class="hero-name-accent">Chinnasamy</span>
+                </h1>
+
+                <div class="hero-role-row">
+                    <span class="role-label">I build</span>
+                    <span class="typewriter-text" id="typewriter"></span>
+                </div>
+
+                <p class="hero-subtext">
+                    M.Sc. Artificial Intelligence graduate who ships production AI systems —
+                    medical vision models, secure LLM gateways, RAG pipelines, and analytics platforms
+                    that hold up under real-world load.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary magnetic" id="cta-view-work">
+                        <span>View Projects</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="Ishva_Resume_Final.pdf" class="btn btn-ghost magnetic" id="cta-download-resume" download>
+                        <i class="fas fa-file-lines"></i>
+                        <span>Download Resume</span>
+                    </a>
+                    <a href="https://github.com/Ishva24" class="btn btn-icon magnetic" target="_blank" rel="noopener"
+                        aria-label="GitHub" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/Ishva24" class="btn btn-icon magnetic" target="_blank" rel="noopener"
+                        aria-label="LinkedIn" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left" data-aos-delay="150">
+                <div class="portrait-frame">
+                    <div class="portrait-ring"></div>
+                    <div class="portrait-ring portrait-ring-2"></div>
+                    <img src="profile.jpeg" alt="Ishva Chinnasamy — AI/ML Engineer" class="portrait-img" width="400" height="400">
+                    <div class="floating-chip chip-1">
+                        <i class="fas fa-brain"></i>
+                        <span>AI/ML</span>
+                    </div>
+                    <div class="floating-chip chip-2">
+                        <i class="fas fa-database"></i>
+                        <span>Data Eng</span>
+                    </div>
+                    <div class="floating-chip chip-3">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>AI Security</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="200">
-            <div class="hero-blob"></div>
-            <div class="hero-img-placeholder">
-                <img src="profile.jpeg" alt="Ishva Chinnasamy">
+        <!-- Impact stats -->
+        <div class="stats-bar" data-aos="fade-up" data-aos-delay="250">
+            <div class="stat-item">
+                <span class="stat-number" data-count="11">0</span>
+                <span class="stat-label">Shipped Projects</span>
             </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="95" data-suffix="%">0</span>
+                <span class="stat-label">Peak Model Accuracy</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="25" data-suffix="%">0</span>
+                <span class="stat-label">ETL Efficiency Gain</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="2">0</span>
+                <span class="stat-label">Internships</span>
+            </div>
+        </div>
+
+        <a href="#about" class="scroll-hint" aria-label="Scroll to about">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About — Bento -->
+    <section id="about" class="about section">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-index">01</span>
+            <h2 class="section-title">About</h2>
+            <p class="section-subtitle">Who I am beyond the bullet points</p>
+        </div>
+
+        <div class="bento-grid">
+            <article class="bento-card bento-main" data-aos="fade-up">
+                <div class="bento-label"><i class="fas fa-user-astronaut"></i> Profile</div>
+                <h3>Engineer who ships AI that works in production — not just notebooks.</h3>
+                <p>
+                    I'm a computer science graduate with an M.Sc. in Artificial Intelligence.
+                    I design clinically-aligned medical vision systems, zero-trust proxies that keep LLMs
+                    from wrecking databases, and ETL + BI stacks that turn messy data into decisions.
+                </p>
+                <p>
+                    <strong>What I'm looking for:</strong> a growth-oriented role on a team that values
+                    clean systems, measurable impact, and shipping fast without breaking trust.
+                </p>
+            </article>
+
+            <article class="bento-card bento-focus" data-aos="fade-up" data-aos-delay="80">
+                <div class="bento-label"><i class="fas fa-bullseye"></i> Focus Areas</div>
+                <ul class="focus-list">
+                    <li><i class="fas fa-check"></i> Machine Learning & Deep Learning</li>
+                    <li><i class="fas fa-check"></i> ETL & Data Engineering</li>
+                    <li><i class="fas fa-check"></i> AI Security & MLOps</li>
+                    <li><i class="fas fa-check"></i> BI & Analytics Products</li>
+                </ul>
+            </article>
+
+            <article class="bento-card bento-terminal" data-aos="fade-up" data-aos-delay="120">
+                <div class="terminal-chrome">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-name">ishva@portfolio:~</span>
+                </div>
+                <pre class="terminal-code"><code><span class="tk">const</span> ishva = {
+  role: <span class="ts">"AI/ML Engineer"</span>,
+  stack: [<span class="ts">"Python"</span>, <span class="ts">"PyTorch"</span>, <span class="ts">"SQL"</span>],
+  ships: <span class="ts">"production systems"</span>,
+  status: <span class="ts">"open to work"</span>
+};
+
+<span class="tc">// always learning, always shipping</span>
+console.log(ishva.status);</code></pre>
+            </article>
+
+            <article class="bento-card bento-quick" data-aos="fade-up" data-aos-delay="160">
+                <div class="bento-label"><i class="fas fa-bolt"></i> Quick Facts</div>
+                <div class="quick-facts">
+                    <div class="fact">
+                        <span class="fact-k">Education</span>
+                        <span class="fact-v">M.Sc. AI · CGPA 8.2</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-k">Base</span>
+                        <span class="fact-v">India · Remote-friendly</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-k">Strength</span>
+                        <span class="fact-v">End-to-end AI products</span>
+                    </div>
+                    <div class="fact">
+                        <span class="fact-k">Stack core</span>
+                        <span class="fact-v">Python · SQL · Docker</span>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <div class="about-text" data-aos="fade-right">
-                <p>
-                    🎓 I am a <strong>computer science graduate</strong> who speaks fluent Python, conversational SQL, and broken CSS. I hold an M.Sc. in Artificial Intelligence, which means I can explain complex neural network weights but still struggle to explain what I do to my parents.
-                </p>
-                <p>
-                    🚀 My day-to-day work involves engineering clinically-aligned medical vision systems, creating security proxies to stop LLMs from breaking database tables, and debugging applications by staring at stack traces until they get intimidated and fix themselves.
-                </p>
-                <p>
-                    🎯 <strong>The Mission:</strong> Build production-grade backends, data pipelines, and analytics suites that don't crash when someone inputs "hello world" in production. Seeking a growth-oriented role where my coffee-to-code pipeline runs with 99.9% uptime.
-                </p>
-
-                <div class="key-highlights">
-                    <span class="highlight-badge"><i class="fas fa-brain"></i> ML & Deep Learning</span>
-                    <span class="highlight-badge"><i class="fas fa-database"></i> ETL & Data Engineering</span>
-                    <span class="highlight-badge"><i class="fas fa-shield-alt"></i> AI Security & MLOps</span>
-                    <span class="highlight-badge"><i class="fas fa-chart-bar"></i> BI & Data Analytics</span>
-                </div>
-            </div>
-
-            <!-- Terminal Mockup (Balancing the Left-sided Layout) -->
-            <div class="about-terminal" data-aos="fade-left" id="about-terminal-mockup">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                    <div class="terminal-title">developer_workflow.py</div>
-                </div>
-                <div class="terminal-body">
-                    <pre><code><span class="terminal-keyword">import</span> time
-<span class="terminal-keyword">from</span> developer <span class="terminal-keyword">import</span> Coffee, Brain, Terminal
-
-<span class="terminal-keyword">def</span> <span class="terminal-function">run_developer_day</span>(coffee_input):
-    fuel = Coffee.consume(coffee_input) <span class="terminal-comment"># Espresso required</span>
-    brain_state = Brain.initialize(fuel)
-    
-    <span class="terminal-keyword">while</span> brain_state.is_active:
-        code = brain_state.write_code()
-        <span class="terminal-keyword">try</span>:
-            Terminal.run_tests(code)
-            <span class="terminal-keyword">break</span>
-        <span class="terminal-keyword">except</span> BugDetected <span class="terminal-keyword">as</span> error:
-            brain_state.stare_intently(error)
-            time.sleep(<span class="terminal-number">300</span>) <span class="terminal-comment"># Staring at it helps</span>
-            
-    <span class="terminal-keyword">return</span> <span class="terminal-string">"🚀 Deployed to Prod!"</span>
-
-print(run_developer_day(<span class="terminal-string">"Espresso"</span>))</code></pre>
-                </div>
-            </div>
+    <!-- Projects -->
+    <section id="projects" class="projects section">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-index">02</span>
+            <h2 class="section-title">Featured Work</h2>
+            <p class="section-subtitle">Production systems, research-grade models, and data products</p>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
+        <div class="project-filters" data-aos="fade-up" role="tablist" aria-label="Filter projects">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-btn" data-filter="ai-ml" role="tab" aria-selected="false">AI / ML</button>
+            <button class="filter-btn" data-filter="genai" role="tab" aria-selected="false">GenAI</button>
+            <button class="filter-btn" data-filter="security" role="tab" aria-selected="false">Security</button>
+            <button class="filter-btn" data-filter="data" role="tab" aria-selected="false">Data Eng</button>
+            <button class="filter-btn" data-filter="fullstack" role="tab" aria-selected="false">Full Stack</button>
+        </div>
 
-            <!-- Project 1: Skin Scan AI -->
-            <div class="project-card" data-aos="zoom-in" id="project-skin-scan">
-                <div class="project-img"><img src="assets/skin_scan.png" alt="Skin Scan AI Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">AI/ML Engineering</div>
+        <div class="projects-grid" id="projects-grid">
+
+            <!-- Featured: Skin Scan -->
+            <article class="project-card project-featured" data-category="ai-ml" data-aos="fade-up" id="project-skin-scan">
+                <div class="project-media">
+                    <img src="assets/skin_scan.png" alt="Skin Scan AI dermatology screening interface" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                    <span class="project-badge">Flagship</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">AI / ML Engineering</span>
+                        <span class="project-impact"><i class="fas fa-stethoscope"></i> Clinical AI</span>
+                    </div>
                     <h3>Skin Scan AI (DermaCon-IN)</h3>
+                    <p>Full-stack AI screening system classifying 20+ skin conditions with a Swin Transformer + Concept Bottleneck Model — interpretable diagnostics with GradCAM heatmaps for clinical trust.</p>
                     <div class="project-tags">
                         <span class="tag">PyTorch</span>
+                        <span class="tag">Swin Transformer</span>
                         <span class="tag">Flask</span>
                         <span class="tag">React 18</span>
-                        <span class="tag">Swin Transformer</span>
                         <span class="tag">Docker</span>
                     </div>
-                    <p>Built a full-stack AI screening system classifying 20+ skin conditions. Combines a Swin Transformer + Concept Bottleneck Model for interpretable, clinically-aligned diagnostics with GradCAM heatmaps.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Skin-Scan" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://huggingface.co/spaces/Ishva24/SkinScanAI-Dermatology-Triage" class="link-icon" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <a href="https://huggingface.co/spaces/Ishva24/SkinScanAI-Dermatology-Triage" class="link-btn primary" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/Ishva24/Skin-Scan" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- Project 2: Guardian-MCP -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="100" id="project-guardian-mcp">
-                <div class="project-img"><img src="assets/guardian_mcp.png" alt="Guardian-MCP Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">AI Security / Software Eng</div>
+            <!-- Package-Guard -->
+            <article class="project-card" data-category="security" data-aos="fade-up" data-aos-delay="40" id="project-package-guard">
+                <div class="project-media">
+                    <img src="assets/package_guard.png" alt="Package-Guard AI agent supply-chain firewall dashboard" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">AI Security</span>
+                        <span class="project-impact"><i class="fas fa-shield-halved"></i> Supply chain</span>
+                    </div>
+                    <h3>Package-Guard for AI Agents</h3>
+                    <p>Zero-trust package firewall that intercepts <code>npm</code>/<code>pip</code> installs from coding agents — blocks hallucinations (slopsquatting), typosquats, and low-reputation packages via a 4-layer inspection pipeline.</p>
+                    <div class="project-tags">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">CLI Interceptor</span>
+                        <span class="tag">npm / PyPI</span>
+                        <span class="tag">Policy Engine</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/Package-Guard---For-AI-Agents" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Guardian-MCP -->
+            <article class="project-card" data-category="security" data-aos="fade-up" data-aos-delay="80" id="project-guardian-mcp">
+                <div class="project-media">
+                    <img src="assets/guardian_mcp.png" alt="Guardian-MCP security gateway" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">AI Security</span>
+                    </div>
                     <h3>Guardian-MCP Gateway</h3>
+                    <p>Zero-trust middleware for Model Context Protocol — RS256 JWT auth, role scopes, and real-time semantic argument checks against prompt injection.</p>
                     <div class="project-tags">
                         <span class="tag">TypeScript</span>
                         <span class="tag">Node.js</span>
-                        <span class="tag">JWT (RS256)</span>
-                        <span class="tag">SSE</span>
+                        <span class="tag">JWT</span>
                         <span class="tag">Docker Compose</span>
                     </div>
-                    <p>Designed a Zero-Trust security middleware proxy for the Model Context Protocol (MCP). Implements asymmetric JWT authentication, role-based scopes, and real-time semantic argument checks to prevent prompt injections.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Guardian-MCP" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/Ishva24/Guardian-MCP" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- Project 3: LaborMarket-ETL -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="200" id="project-labor-etl">
-                <div class="project-img"><img src="assets/labor_etl.png" alt="LaborMarket-ETL Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">Data Analysis & Engineering</div>
+            <!-- Domain-Specific RAG (public repo name) -->
+            <article class="project-card" data-category="genai" data-aos="fade-up" data-aos-delay="40" id="project-rag">
+                <div class="project-media">
+                    <img src="assets/rag.png" alt="Domain-specific DocuQuery RAG pipeline" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">MLOps & GenAI</span>
+                        <span class="project-impact"><i class="fas fa-layer-group"></i> Hybrid retrieval</span>
+                    </div>
+                    <h3>DocuQuery RAG Pipeline</h3>
+                    <p>Production domain-specific RAG: late chunking, hybrid BM25 + FAISS retrieval with RRF fusion, cross-encoder rerank, FastAPI SSE streaming, MLflow prompts, and RAGAS evaluation.</p>
+                    <div class="project-tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">FAISS</span>
+                        <span class="tag">BM25</span>
+                        <span class="tag">MLflow</span>
+                        <span class="tag">RAGAS</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://huggingface.co/spaces/Ishva24/DocuQuery-RAG-Pipeline" class="link-btn primary" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                        <a href="https://github.com/Ishva24/Domain-Specific-RAG-Pipeline" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Goalsetter MCP -->
+            <article class="project-card" data-category="genai" data-aos="fade-up" data-aos-delay="80" id="project-goalsetter">
+                <div class="project-media media-placeholder media-genai">
+                    <div class="media-icon"><i class="fas fa-comments"></i></div>
+                    <span class="media-label">MERN · Gemini · MCP</span>
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">GenAI Full Stack</span>
+                    </div>
+                    <h3>Goalsetter + MCP Assistant</h3>
+                    <p>MERN goal manager with JWT auth and a Gemini 2.5 Flash assistant. An MCP server securely exposes create/read/delete goal tools so users manage tasks via natural language.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Gemini</span>
+                        <span class="tag">MCP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/mern-goalsetter-mcp" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Bus Tracking -->
+            <article class="project-card" data-category="fullstack" data-aos="fade-up" data-aos-delay="40" id="project-bus-tracking">
+                <div class="project-media media-placeholder media-fullstack">
+                    <div class="media-icon"><i class="fas fa-bus"></i></div>
+                    <span class="media-label">Realtime · Socket.IO · Redis</span>
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">Full Stack</span>
+                        <span class="project-impact"><i class="fas fa-location-dot"></i> Live ETA</span>
+                    </div>
+                    <h3>BusTrack — Realtime Tracking</h3>
+                    <p>Backend-first monorepo for live bus tracking: Express + JWT API, Socket.IO positions from Redis, Prisma/MySQL (Chennai routes seed), and a bus simulator publishing every 3s.</p>
+                    <div class="project-tags">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Socket.IO</span>
+                        <span class="tag">Redis</span>
+                        <span class="tag">Prisma</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/Bus-Tracking" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Labor ETL -->
+            <article class="project-card" data-category="data" data-aos="fade-up" data-aos-delay="80" id="project-labor-etl">
+                <div class="project-media">
+                    <img src="assets/labor_etl.png" alt="Labor market ETL pipeline" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">Data Engineering</span>
+                        <span class="project-impact"><i class="fas fa-chart-line"></i> +25% efficiency</span>
+                    </div>
                     <h3>LaborMarket-ETL Pipeline</h3>
+                    <p>End-to-end job-market pipeline: ingest → clean → impute → MySQL schemas → Tableau salary analytics dashboards. Built during Gravity AI internship workstreams.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Pandas</span>
                         <span class="tag">SQL</span>
-                        <span class="tag">Docker</span>
                         <span class="tag">Tableau</span>
                     </div>
-                    <p>Developed an automated end-to-end pipeline to ingest job market datasets, perform data cleaning and imputation, load into normalized MySQL schemas, and build interactive Tableau dashboards for salary analytics.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/LaborMarket-ETL" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/Ishva24" class="link-btn" target="_blank" rel="noopener" title="Repo not public yet — profile">
+                            <i class="fab fa-github"></i> Profile
+                        </a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- Project: DocuQuery-RAG -->
-            <div class="project-card" data-aos="zoom-in" id="project-rag">
-                <div class="project-img"><img src="assets/rag.png" alt="DocuQuery-RAG Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">MLOps & GenAI</div>
-                    <h3>DocuQuery-RAG Pipeline</h3>
-                    <div class="project-tags">
-                        <span class="tag">LangChain</span>
-                        <span class="tag">Pinecone</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">Ragas</span>
-                        <span class="tag">Docker</span>
-                    </div>
-                    <p>Designed a production-ready Retrieval-Augmented Generation (RAG) system with semantic chunking, vector index rotation, and automated pipeline quality evaluation using Ragas metrics.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/Ishva24/DocuQuery-RAG" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://huggingface.co/spaces/Ishva24/DocuQuery-RAG-Pipeline" class="link-icon" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
+            <!-- FinInsight -->
+            <article class="project-card" data-category="data" data-aos="fade-up" data-aos-delay="40" id="project-fininsight">
+                <div class="project-media">
+                    <img src="assets/fininsight.png" alt="FinInsight analytics pipeline" loading="lazy">
+                    <div class="project-media-overlay"></div>
                 </div>
-            </div>
-
-            <!-- Project: FinInsight -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="100" id="project-fininsight">
-                <div class="project-img"><img src="assets/fininsight.png" alt="FinInsight Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">Analytics Engineering</div>
-                    <h3>FinInsight Analytics Pipeline</h3>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">Analytics Engineering</span>
+                    </div>
+                    <h3>FinInsight Analytics</h3>
+                    <p>Modern analytics stack: DuckDB ingestion, dbt transforms + tests, Streamlit transaction dashboards, CI/CD ready.</p>
                     <div class="project-tags">
                         <span class="tag">DuckDB</span>
                         <span class="tag">dbt</span>
-                        <span class="tag">Python</span>
                         <span class="tag">Streamlit</span>
                         <span class="tag">CI/CD</span>
                     </div>
-                    <p>Built a modern analytics engineering pipeline ingestion layer using DuckDB, running data transformations and schema testing with dbt, and publishing real-time transaction summaries on Streamlit.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/FinInsight-Analytics" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
+                        <a href="https://github.com/Ishva24" class="link-btn" target="_blank" rel="noopener" title="Repo not public yet — profile">
+                            <i class="fab fa-github"></i> Profile
+                        </a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- Project 4: Brain Tumor Detection -->
-            <div class="project-card" data-aos="zoom-in" id="project-brain-tumor">
-                <div class="project-img"><img src="assets/brain_tumor.png" alt="Brain Tumor MRI Detection Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">Data Science / Computer Vision</div>
+            <!-- Trading Bot -->
+            <article class="project-card" data-category="data" data-aos="fade-up" data-aos-delay="80" id="project-trading-bot">
+                <div class="project-media media-placeholder media-trading">
+                    <div class="media-icon"><i class="fas fa-chart-line"></i></div>
+                    <span class="media-label">Binance Futures · Testnet</span>
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">Python · FinTech</span>
+                        <span class="project-impact"><i class="fas fa-terminal"></i> CLI + Rich UI</span>
+                    </div>
+                    <h3>Binance Futures Trading Bot</h3>
+                    <p>Structured Python CLI for Binance Futures Testnet: Market, Limit, and TWAP orders with HMAC client, live prices, balance tables, rotating logs, and layered architecture.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Binance API</span>
+                        <span class="tag">Rich</span>
+                        <span class="tag">TWAP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Ishva24/Trading-Bot-" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Brain Tumor -->
+            <article class="project-card" data-category="ai-ml" data-aos="fade-up" data-aos-delay="40" id="project-brain-tumor">
+                <div class="project-media">
+                    <img src="assets/brain_tumor.png" alt="Brain tumor MRI detection" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">Computer Vision</span>
+                        <span class="project-impact"><i class="fas fa-bullseye"></i> 95% accuracy</span>
+                    </div>
                     <h3>Brain Tumor MRI Detection</h3>
+                    <p>Deep learning classifier on MRI scans with augmentation and histogram equalization — ~40% faster estimated clinical turnaround.</p>
                     <div class="project-tags">
                         <span class="tag">TensorFlow</span>
-                        <span class="tag">Keras</span>
                         <span class="tag">CNN</span>
                         <span class="tag">OpenCV</span>
+                        <span class="tag">Keras</span>
                     </div>
-                    <p>Engineered a deep learning classifier achieving 95% detection accuracy on MRI scans. Features image augmentation and histogram equalization, reducing clinical turnaround time estimation by 40%.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Brain_tumor_detection" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://huggingface.co/spaces/Ishva24/Brain-Tumor-MRI-Classification" class="link-icon" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <a href="https://brain-tumor-detection-jade.vercel.app" class="link-btn primary" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                        <a href="https://huggingface.co/spaces/Ishva24/Brain-Tumor-MRI-Classification" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> HF
+                        </a>
+                        <a href="https://github.com/Ishva24/Brain_tumor_detection" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <!-- Project 5: Diabetes Prediction -->
-            <div class="project-card" data-aos="zoom-in" data-aos-delay="100" id="project-diabetes">
-                <div class="project-img"><img src="assets/diabetes.png" alt="Diabetes Diagnostic Prediction Mockup" style="width:100%; height:100%; object-fit:cover;"></div>
-                <div class="project-content">
-                    <div class="project-role-badge">Data Science / Machine Learning</div>
+            <!-- Diabetes -->
+            <article class="project-card" data-category="ai-ml" data-aos="fade-up" data-aos-delay="80" id="project-diabetes">
+                <div class="project-media">
+                    <img src="assets/diabetes.png" alt="Diabetes diagnostic prediction" loading="lazy">
+                    <div class="project-media-overlay"></div>
+                </div>
+                <div class="project-body">
+                    <div class="project-meta">
+                        <span class="project-domain">Machine Learning</span>
+                        <span class="project-impact"><i class="fas fa-bullseye"></i> 85% accuracy</span>
+                    </div>
                     <h3>Diabetes Diagnostic Prediction</h3>
+                    <p>Full diagnostic ML pipeline: missing-value handling, feature engineering, Random Forest + tuning, ROC-AUC evaluation.</p>
                     <div class="project-tags">
                         <span class="tag">scikit-learn</span>
                         <span class="tag">Random Forest</span>
                         <span class="tag">Pandas</span>
-                        <span class="tag">Hyperparameter Tuning</span>
                     </div>
-                    <p>Optimized a diagnostic predictor reaching 85% accuracy. Implemented the complete pipeline from feature engineering and handling missing values to model evaluation using ROC-AUC.</p>
                     <div class="project-links">
-                        <a href="https://github.com/Ishva24/Diabetes_Prediction" class="link-icon" target="_blank" title="View Code"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://ishva24.github.io/Diabetes_Prediction/" class="link-icon" target="_blank" title="Live Demo"><i class="fas fa-external-link-alt"></i> Demo</a>
+                        <a href="https://ishva24.github.io/Diabetes_Prediction/" class="link-btn primary" target="_blank" rel="noopener">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </a>
+                        <a href="https://github.com/Ishva24/Diabetes_Prediction" class="link-btn" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i> Code
+                        </a>
                     </div>
                 </div>
-            </div>
-
+            </article>
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience-section">
-        <h2 class="section-title">Professional Experience</h2>
-        <div class="timeline">
-            <!-- Item 1: Gravity AI -->
-            <div class="timeline-item left" data-aos="fade-right" id="exp-gravity">
-                <div class="icon"><i class="fas fa-chart-bar"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Dec 2025 - May 2026</div>
-                    <h3>Data Analyst Intern</h3>
-                    <h4>Gravity AI</h4>
-                    <ul>
-                        <li>Built Python-based ETL pipelines to ingest, clean, and transform labor market datasets, increasing pipeline efficiency by 25%.</li>
-                        <li>Performed exploratory data analysis (EDA) on employment trends using Pandas and NumPy to surface insights for strategy teams.</li>
-                        <li>Implemented automated validation frameworks, achieving 98%+ data accuracy across all production datasets.</li>
-                        <li>Developed interactive Tableau and Power BI dashboards translating complex raw metrics into business intelligence.</li>
-                        <li>Collaborated with product and engineering teams, contributing to 30% faster feature development cycles.</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Experience -->
+    <section id="experience" class="experience section">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-index">03</span>
+            <h2 class="section-title">Experience</h2>
+            <p class="section-subtitle">Where I've delivered measurable impact</p>
+        </div>
 
-            <!-- Item 2: Acmegrade -->
-            <div class="timeline-item right" data-aos="fade-left" id="exp-acmegrade">
-                <div class="icon"><i class="fas fa-briefcase"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">Jul 2024 - Dec 2024</div>
-                    <h3>Software Intern</h3>
-                    <h4>Acmegrade</h4>
-                    <ul>
-                        <li>Assisted in development and testing of enterprise ERP modules; reported 50+ bugs, improving process efficiency by 15%.</li>
-                        <li>Participated in requirement-gathering and data analysis in cross-functional meetings, reducing development time by 20%.</li>
-                    </ul>
+        <div class="exp-stack">
+            <article class="exp-card" data-aos="fade-up" id="exp-gravity">
+                <div class="exp-sidebar">
+                    <span class="exp-date">Dec 2025 — May 2026</span>
+                    <span class="exp-type">Internship</span>
                 </div>
-            </div>
+                <div class="exp-main">
+                    <div class="exp-title-row">
+                        <h3>Data Analyst Intern</h3>
+                        <span class="exp-company">Gravity AI</span>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Built Python ETL pipelines for labor-market datasets — <strong>+25% pipeline efficiency</strong>.</li>
+                        <li>Ran EDA on employment trends with Pandas/NumPy to surface strategy insights.</li>
+                        <li>Automated validation frameworks achieving <strong>98%+ data accuracy</strong>.</li>
+                        <li>Delivered Tableau & Power BI dashboards that turned raw metrics into decisions.</li>
+                        <li>Partnered with product & engineering — <strong>30% faster feature cycles</strong>.</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span>Python</span><span>Pandas</span><span>SQL</span><span>Tableau</span><span>Power BI</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="exp-card" data-aos="fade-up" data-aos-delay="80" id="exp-acmegrade">
+                <div class="exp-sidebar">
+                    <span class="exp-date">Jul 2024 — Dec 2024</span>
+                    <span class="exp-type">Internship</span>
+                </div>
+                <div class="exp-main">
+                    <div class="exp-title-row">
+                        <h3>Software Intern</h3>
+                        <span class="exp-company">Acmegrade</span>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Supported enterprise ERP module development & testing; logged <strong>50+ bugs</strong>, improving process efficiency by 15%.</li>
+                        <li>Joined requirement-gathering and analysis sessions — <strong>20% faster development</strong> on assigned workstreams.</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span>Software Testing</span><span>ERP</span><span>Requirements Analysis</span>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" style="background: #0d0d19;">
-        <h2 class="section-title">Education</h2>
-        <div class="timeline">
-            <!-- M.Sc -->
-            <div class="timeline-item right" data-aos="fade-left" id="edu-msc">
-                <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2024 - 2026</div>
+    <!-- Education -->
+    <section id="education" class="education section section-alt">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-index">04</span>
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">Academic foundation in AI & computer science</p>
+        </div>
+
+        <div class="edu-grid">
+            <article class="edu-card" data-aos="fade-up" id="edu-msc">
+                <div class="edu-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="edu-body">
+                    <span class="edu-year">2024 — 2026</span>
                     <h3>Master of Science</h3>
-                    <h4>Karunya University, Coimbatore</h4>
-                    <p>Minor in Artificial Intelligence</p>
-                    <p><strong>CGPA:</strong> 8.2</p>
+                    <p class="edu-field">Artificial Intelligence</p>
+                    <p class="edu-school">Karunya University, Coimbatore</p>
+                    <div class="edu-gpa">CGPA <strong>8.2</strong> / 10</div>
                 </div>
-            </div>
-
-            <!-- B.Sc -->
-            <div class="timeline-item left" data-aos="fade-right" id="edu-bsc">
-                <div class="icon"><i class="fas fa-university"></i></div>
-                <div class="timeline-content">
-                    <div class="timeline-date">2021 - 2024</div>
+            </article>
+            <article class="edu-card" data-aos="fade-up" data-aos-delay="80" id="edu-bsc">
+                <div class="edu-icon"><i class="fas fa-university"></i></div>
+                <div class="edu-body">
+                    <span class="edu-year">2021 — 2024</span>
                     <h3>Bachelor of Science</h3>
-                    <h4>Karunya University, Coimbatore</h4>
-                    <p>Minor in Computer Science</p>
-                    <p><strong>CGPA:</strong> 8.75</p>
+                    <p class="edu-field">Computer Science</p>
+                    <p class="edu-school">Karunya University, Coimbatore</p>
+                    <div class="edu-gpa">CGPA <strong>8.75</strong> / 10</div>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid-container">
+    <!-- Skills -->
+    <section id="skills" class="skills section">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-index">05</span>
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Tools I use to design, train, ship, and monitor systems</p>
+        </div>
 
-            <!-- Category 1 -->
+        <!-- Marquee -->
+        <div class="skills-marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>SQL</span><span>Docker</span>
+                <span>FastAPI</span><span>LangChain</span><span>Pandas</span><span>Tableau</span><span>TypeScript</span>
+                <span>scikit-learn</span><span>dbt</span><span>Pinecone</span><span>React</span><span>Git</span>
+                <span>Python</span><span>PyTorch</span><span>TensorFlow</span><span>SQL</span><span>Docker</span>
+                <span>FastAPI</span><span>LangChain</span><span>Pandas</span><span>Tableau</span><span>TypeScript</span>
+                <span>scikit-learn</span><span>dbt</span><span>Pinecone</span><span>React</span><span>Git</span>
+            </div>
+        </div>
+
+        <div class="skills-grid">
             <div class="skill-group" data-aos="fade-up" id="skills-ai-ml">
-                <h3><i class="fas fa-brain"></i> Machine Learning & AI</h3>
+                <div class="skill-group-head">
+                    <span class="skill-icon"><i class="fas fa-brain"></i></span>
+                    <h3>Machine Learning & AI</h3>
+                </div>
                 <div class="skill-badges">
                     <span class="skill-badge">PyTorch</span>
                     <span class="skill-badge">TensorFlow</span>
@@ -353,12 +700,20 @@ print(run_developer_day(<span class="terminal-string">"Espresso"</span>))</code>
                     <span class="skill-badge">Concept Bottleneck Models</span>
                     <span class="skill-badge">OpenCV</span>
                     <span class="skill-badge">GradCAM</span>
+                    <span class="skill-badge">LangChain</span>
+                    <span class="skill-badge">RAG</span>
+                    <span class="skill-badge">FAISS</span>
+                    <span class="skill-badge">MLflow</span>
+                    <span class="skill-badge">MCP</span>
+                    <span class="skill-badge">Gemini</span>
                 </div>
             </div>
 
-            <!-- Category 2 -->
-            <div class="skill-group" data-aos="fade-up" data-aos-delay="100" id="skills-data-bi">
-                <h3><i class="fas fa-chart-pie"></i> Data Analytics & BI</h3>
+            <div class="skill-group" data-aos="fade-up" data-aos-delay="60" id="skills-data-bi">
+                <div class="skill-group-head">
+                    <span class="skill-icon"><i class="fas fa-chart-pie"></i></span>
+                    <h3>Data Analytics & BI</h3>
+                </div>
                 <div class="skill-badges">
                     <span class="skill-badge">SQL</span>
                     <span class="skill-badge">Pandas</span>
@@ -366,16 +721,19 @@ print(run_developer_day(<span class="terminal-string">"Espresso"</span>))</code>
                     <span class="skill-badge">Tableau</span>
                     <span class="skill-badge">Power BI</span>
                     <span class="skill-badge">Streamlit</span>
+                    <span class="skill-badge">DuckDB</span>
+                    <span class="skill-badge">dbt</span>
                     <span class="skill-badge">Seaborn</span>
-                    <span class="skill-badge">Matplotlib</span>
                     <span class="skill-badge">EDA</span>
                     <span class="skill-badge">A/B Testing</span>
                 </div>
             </div>
 
-            <!-- Category 3 -->
-            <div class="skill-group" data-aos="fade-up" data-aos-delay="200" id="skills-mleps">
-                <h3><i class="fas fa-server"></i> MLOps & Deployment</h3>
+            <div class="skill-group" data-aos="fade-up" data-aos-delay="120" id="skills-mleps">
+                <div class="skill-group-head">
+                    <span class="skill-icon"><i class="fas fa-server"></i></span>
+                    <h3>MLOps & Backend</h3>
+                </div>
                 <div class="skill-badges">
                     <span class="skill-badge">Flask</span>
                     <span class="skill-badge">FastAPI</span>
@@ -383,15 +741,21 @@ print(run_developer_day(<span class="terminal-string">"Espresso"</span>))</code>
                     <span class="skill-badge">Docker Compose</span>
                     <span class="skill-badge">REST APIs</span>
                     <span class="skill-badge">ETL Pipelines</span>
-                    <span class="skill-badge">JWT Authentication</span>
-                    <span class="skill-badge">Server-Sent Events</span>
+                    <span class="skill-badge">JWT Auth</span>
+                    <span class="skill-badge">SSE</span>
+                    <span class="skill-badge">CI/CD</span>
+                    <span class="skill-badge">Prisma</span>
+                    <span class="skill-badge">Redis</span>
+                    <span class="skill-badge">Socket.IO</span>
                     <span class="skill-badge">Git & GitHub</span>
                 </div>
             </div>
 
-            <!-- Category 4 -->
-            <div class="skill-group" data-aos="fade-up" data-aos-delay="300" id="skills-languages">
-                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+            <div class="skill-group" data-aos="fade-up" data-aos-delay="180" id="skills-languages">
+                <div class="skill-group-head">
+                    <span class="skill-icon"><i class="fas fa-code"></i></span>
+                    <h3>Languages & Frontend</h3>
+                </div>
                 <div class="skill-badges">
                     <span class="skill-badge">Python</span>
                     <span class="skill-badge">TypeScript</span>
@@ -399,71 +763,102 @@ print(run_developer_day(<span class="terminal-string">"Espresso"</span>))</code>
                     <span class="skill-badge">SQL</span>
                     <span class="skill-badge">Java</span>
                     <span class="skill-badge">C++</span>
+                    <span class="skill-badge">React</span>
+                    <span class="skill-badge">Redux</span>
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">HTML / CSS</span>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- Certifications -->
-    <section id="certifications" style="background: #0d0d19;">
-        <h2 class="section-title">Certifications</h2>
-        <div class="projects-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            <div class="project-card" data-aos="fade-up" style="text-align: center; padding: 25px;" id="cert-python">
-                <i class="fab fa-google" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+    <section id="certifications" class="certs section section-alt">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-index">06</span>
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Validated skills from industry leaders</p>
+        </div>
+
+        <div class="certs-grid">
+            <article class="cert-card" data-aos="fade-up" id="cert-python">
+                <div class="cert-logo google"><i class="fab fa-google"></i></div>
                 <h3>IT Automation with Python</h3>
-                <p>Google / Tata Strive & Coursera (2024)</p>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-delay="100" style="text-align: center; padding: 25px;" id="cert-azure">
-                <i class="fab fa-microsoft" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+                <p>Google / Tata Strive & Coursera</p>
+                <span class="cert-year">2024</span>
+            </article>
+            <article class="cert-card" data-aos="fade-up" data-aos-delay="80" id="cert-azure">
+                <div class="cert-logo azure"><i class="fab fa-microsoft"></i></div>
                 <h3>Fundamentals of AI</h3>
-                <p>Microsoft Azure (2024)</p>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-delay="200" style="text-align: center; padding: 25px;" id="cert-data">
-                <i class="fab fa-google" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+                <p>Microsoft Azure</p>
+                <span class="cert-year">2024</span>
+            </article>
+            <article class="cert-card" data-aos="fade-up" data-aos-delay="160" id="cert-data">
+                <div class="cert-logo google"><i class="fab fa-google"></i></div>
                 <h3>Google Data Analytics</h3>
-                <p>Google & Coursera (2024)</p>
-            </div>
+                <p>Google & Coursera</p>
+                <span class="cert-year">2024</span>
+            </article>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container" data-aos="flip-up">
-
-            <div class="contact-card" id="contact-email">
-                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                <h3>Email Me</h3>
-                <a href="mailto:ishva006@gmail.com">ishva006@gmail.com</a>
+    <!-- Contact -->
+    <section id="contact" class="contact section">
+        <div class="contact-panel" data-aos="zoom-in">
+            <div class="section-header contact-header">
+                <span class="section-index">07</span>
+                <h2 class="section-title">Let's build something</h2>
+                <p class="section-subtitle">
+                    Open to AI/ML, data science, and software roles.
+                    If my work resonates, I'd love to hear from you.
+                </p>
             </div>
 
-            <div class="contact-card" id="contact-linkedin">
-                <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                <h3>LinkedIn</h3>
-                <a href="https://linkedin.com/in/Ishva24" target="_blank">linkedin.com/in/Ishva24</a>
+            <div class="contact-actions">
+                <a href="mailto:ishva006@gmail.com" class="contact-primary magnetic">
+                    <i class="fas fa-envelope"></i>
+                    ishva006@gmail.com
+                </a>
+                <div class="contact-row">
+                    <a href="https://linkedin.com/in/Ishva24" class="contact-chip" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Ishva24" class="contact-chip" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="tel:+919677631401" class="contact-chip">
+                        <i class="fas fa-phone"></i> +91 96776 31401
+                    </a>
+                    <a href="Ishva_Resume_Final.pdf" class="contact-chip" download>
+                        <i class="fas fa-file-download"></i> Resume
+                    </a>
+                </div>
             </div>
-
-            <div class="contact-card" id="contact-phone">
-                <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                <h3>Call Me</h3>
-                <a href="tel:+919677631401">+91 9677631401</a>
-            </div>
-
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2026 Ishva Chinnasamy. All rights reserved.</p>
-        <p>Built with <i class="fas fa-heart" style="color: var(--accent);"></i>, HTML, CSS, and Javascript.</p>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-mark">◈</span> ishva.works
+            </div>
+            <p class="footer-copy">© 2026 Ishva Chinnasamy. Designed to impress — built to convert.</p>
+            <div class="footer-social">
+                <a href="https://github.com/Ishva24" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/Ishva24" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:ishva006@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Back to top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <script src="script.js"></script>
 </body>
 
