@@ -47,6 +47,7 @@ ${KTEXT()}
     let history = [];
     let isOpen = false;
     let isBusy = false;
+    let lastBotReplies = []; // avoid copy-paste answers back-to-back
 
     document.addEventListener("DOMContentLoaded", initHireBot);
 
@@ -218,6 +219,7 @@ ${KTEXT()}
                 reply = offlineAnswer(text);
             }
             typing.remove();
+            rememberReply(reply);
             appendMessage("bot", reply);
             history.push({ role: "assistant", content: reply });
             // Keep history short
@@ -418,40 +420,82 @@ ${KTEXT()}
     }
 
     function answerOpinion(q, k) {
-        // Slightly different flavors so it doesn't feel copy-pasted
-        if (/good guy|good person|character|personality|vibe|nice|kind|trust/.test(q)) {
+        // Split intents so similar questions don't clone the same paragraph
+
+        // 1) Character / "good guy"
+        if (/good guy|good person|character|personality|vibe|nice|kind|trust|friendly|attitude/.test(q)) {
             return pick([
                 `Professionally? **Yes — hire-energy is strong.** Personally I only know him through the work trail ` +
-                    `(resume, GitHub, LinkedIn), not his coffee order ☕\n\n` +
+                    `(resume, GitHub, LinkedIn), not his coffee order.\n\n` +
                     `What the trail shows: collaborative (Gravity AI: partnered with product/eng for **30% faster feature cycles**), ` +
                     `obsessed with clean systems, and he actually ships — medical AI, AI security, RAG, data platforms — not vibes-only LinkedIn posts.\n\n` +
-                    `If "good guy" means *good teammate you'd want on a sprint*: the evidence says **shortlist him**. ` +
+                    `If "good guy" means *good teammate on a sprint*: the evidence says **shortlist him**. ` +
                     `Chat human-to-human: ${k.identity.email} · ${k.identity.links.linkedin}`,
 
                 `I can't vouch for his karaoke skills, but as a *professional human*? The receipts slap.\n\n` +
                     `• Ships real systems (Skin Scan, Guardian-MCP, RAG, ETL)\n` +
                     `• Metrics, not buzzwords (**95%** MRI accuracy, **+25%** ETL, **98%+** data accuracy)\n` +
                     `• Plays well with teams (internships + cross-functional delivery)\n\n` +
-                    `So: good engineer energy + coachable early-career hunger. Interview him — you'll feel it faster than reading my monologue.`
+                    `So: good engineer energy + coachable early-career hunger. Interview him — you'll feel it faster than reading my monologue.`,
+
+                `Is he a "good guy"? I'm an AI, not his roommate — but the *professional character sheet* looks clean:\n\n` +
+                    `• Shows up with **working demos**, not empty buzzwords\n` +
+                    `• Cross-functional (product + eng at Gravity AI)\n` +
+                    `• Security-minded (Guardian-MCP, Package-Guard) — people who care about not breaking prod tend to be solid teammates\n\n` +
+                    `Book a 20-min call and trust your gut. Start here: ${k.identity.email}`
             ]);
         }
 
-        if (/what do you think|opinion|honest|review|recommend|worth|impressive|legit|solid|red flag|pros|should i (interview|shortlist|recommend)/.test(q)) {
-            return (
-                `Honest bot take (no corporate perfume):\n\n` +
-                `**Ishva is a strong early-career AI/ML hire** — not "10 years FAANG," but *dangerous-in-a-good-way* for a team that wants builders.\n\n` +
-                `✅ Full loop: models → APIs → Docker → metrics\n` +
-                `✅ Breadth: medical vision, AI security, GenAI/RAG, data eng\n` +
-                `✅ Proof: internships at **Gravity AI** & **Acmegrade** + public GitHub heat\n` +
-                `✅ Academics that match the stack: M.Sc. AI **8.2**, B.Sc. CS **8.75**\n\n` +
-                `🚩 Only "flag": he's early-career — which is either a dealbreaker or a *steal*, depending on your level band.\n\n` +
-                `My vote: **interview him**. Worst case you meet someone who actually ships. ` +
-                `Best case you hire the person who makes your AI roadmap less theoretical.\n` +
-                `${k.identity.email} · ${k.identity.links.linkedin} · ${k.identity.links.github}`
-            );
+        // 2) Worth hiring / recommend / should I shortlist
+        if (/worth|recommend|should i (interview|shortlist|recommend|hire)|hire him|good hire|good (candidate|fit|engineer)/.test(q)) {
+            return pick([
+                `**Worth hiring?** For builder-track AI/ML roles: **yes, shortlist.**\n\n` +
+                    `You're not buying a 10-year FAANG resume — you're buying someone who already ships end-to-end: ` +
+                    `vision models, secure LLM gateways, RAG, ETL/BI. Internship math is real (**+25%** ETL, **98%+** accuracy, **30%** faster features).\n\n` +
+                    `Best fit: teams that want hands-on AI engineers, not slide-deck scientists.\n` +
+                    `Next step: ${k.identity.links.linkedin} or ${k.identity.email}`,
+
+                `Quick ROI check:\n` +
+                    `• Can he train/serve models? **Yes** (Skin Scan, Brain Tumor, RAG)\n` +
+                    `• Can he secure AI tooling? **Yes** (Guardian-MCP, Package-Guard)\n` +
+                    `• Can he do data work recruiters measure? **Yes** (Gravity AI metrics)\n\n` +
+                    `If your bar is "senior staff day one," maybe not. If your bar is "high-upside engineer who already ships," **he's worth the interview slot.**\n` +
+                    `GitHub: ${k.github.url}`,
+
+                `My hiring bot vote: **INTERVIEW** (strong yes for junior / mid-early AI roles).\n\n` +
+                    `Why: portfolio density is unusually high for the stage — medical AI + GenAI security + data eng in one human. ` +
+                    `Risk is only level-band mismatch, not "can this person build."\n\n` +
+                    `Resume is on this page. Mail: **${k.identity.email}**`
+            ]);
         }
 
-        // "tell me about him" / general
+        // 3) What do you think / honest opinion
+        if (/what do you think|your (honest )?opinion|honest|review|impressive|legit|solid|red flag|pros and cons|vibe check/.test(q)) {
+            return pick([
+                `Honest bot take (no corporate perfume):\n\n` +
+                    `**Ishva is a strong early-career AI/ML hire** — not "10 years FAANG," but *dangerous-in-a-good-way* for a team that wants builders.\n\n` +
+                    `+ Full loop: models → APIs → Docker → metrics\n` +
+                    `+ Breadth: medical vision, AI security, GenAI/RAG, data eng\n` +
+                    `+ Proof: internships at **Gravity AI** & **Acmegrade** + public GitHub heat\n` +
+                    `+ Academics that match the stack: M.Sc. AI **8.2**, B.Sc. CS **8.75**\n\n` +
+                    `Only real caveat: early-career — dealbreaker or steal, depending on your level band.\n\n` +
+                    `My vote: **interview him**. ${k.identity.email} · ${k.identity.links.linkedin}`,
+
+                `If I were screening resumes at 1am:\n\n` +
+                    `I'd pause on Ishva. Why? Because the portfolio isn't one lucky notebook — it's a **pattern** of shipping (vision, RAG, security, data). ` +
+                    `CGPAs are solid, internships have numbers, GitHub is public.\n\n` +
+                    `I'd schedule a technical chat focused on Skin Scan + Guardian-MCP. If he explains tradeoffs cleanly, you hire. ` +
+                    `That's the whole thesis.\n${k.identity.links.github}`,
+
+                `Think of him as: *production-curious AI engineer with internship receipts*.\n\n` +
+                    `Likes: measurable impact, full-stack AI delivery, security awareness.\n` +
+                    `Watch-outs: still early — give mentorship + ownership, not a pure research ivory tower.\n\n` +
+                    `Net: I'd rather interview Ishva than another "prompt engineer" with zero deploy story. ` +
+                    `Contact: ${k.identity.email}`
+            ]);
+        }
+
+        // 4) Tell me about him / general
         return pick([
             `Alright, unfiltered scout report on **${k.identity.fullName}**:\n\n` +
                 `He's an **${k.identity.role}** from ${k.identity.location} who treats AI like a *product*, not a weekend notebook. ` +
@@ -462,7 +506,12 @@ ${KTEXT()}
             `Imagine a junior-ish engineer who already talks in *shipped systems* and *percentages*. That's Ishva.\n\n` +
                 `${k.summary}\n\n` +
                 `GitHub: ${k.github.url} · LinkedIn: ${k.linkedin.url}\n` +
-                `Ask me *why hire*, *best projects*, or *is he a good fit* — I came prepared.`
+                `Ask me *why hire*, *best projects*, or *is he a good fit* — I came prepared.`,
+
+            `**${k.identity.fullName}** in one breath: AI/ML + data guy from Coimbatore who builds things recruiters can click — demos, repos, dashboards — not just certificates.\n\n` +
+                `Hot zones: computer vision, GenAI security, RAG, ETL/BI.\n` +
+                `Open to: ${k.identity.availability}.\n` +
+                `Reach: ${k.identity.email}`
         ]);
     }
 
@@ -556,7 +605,17 @@ ${KTEXT()}
     }
 
     function pick(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
+        if (!arr || !arr.length) return "";
+        // Prefer a reply we didn't just say
+        const fresh = arr.filter((a) => !lastBotReplies.includes(a));
+        const pool = fresh.length ? fresh : arr;
+        return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function rememberReply(text) {
+        lastBotReplies.push(text);
+        if (lastBotReplies.length > 4) lastBotReplies.shift();
+        return text;
     }
 
     /* ---------- UI helpers ---------- */
