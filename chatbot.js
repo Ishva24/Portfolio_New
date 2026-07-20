@@ -289,80 +289,67 @@ ${KTEXT()}
 
     /* ---------- Offline funny brain (no API key needed) ---------- */
     function offlineAnswer(text) {
-        const q = text.toLowerCase();
+        const q = text.toLowerCase().replace(/[’']/g, "'");
         const k = K();
 
-        if (/^(hi|hello|hey|yo|sup|hola)\b/.test(q)) {
+        // Normalize common typos / casual phrasing
+        const norm = q
+            .replace(/\bwheather\b/g, "whether")
+            .replace(/\brecurit(er|ers|ment)?\b/g, "recruit$1")
+            .replace(/\babout him\b/g, "about ishva")
+            .replace(/\b(he|him|his)\b/g, (m) => {
+                // keep pronouns but help scoring below
+                return m;
+            });
+
+        if (/^(hi|hello|hey|yo|sup|hola|hii+)\b/.test(norm)) {
             return pick([
                 `Heyyy. I'm HireMe Bot — professionally unhinged about one human: **${k.identity.fullName}**. Ask me why your team needs him.`,
                 `Welcome to the Ishva fan-club API 🤖 What's the vibe — projects, skills, or the full "hire him already" pitch?`
             ]);
         }
 
-        if (/why (hire|should)|hire (him|ishva)|reason|pitch|unique|stand ?out/.test(q)) {
-            const bullets = k.whyHire
-                .slice(0, 5)
-                .map((w, i) => `${i + 1}. ${w}`)
-                .join("\n");
-            return (
-                `Okay recruiter-mode activated ⚡ Here's the clean pitch for **${k.identity.fullName}**:\n\n` +
-                `${bullets}\n\n` +
-                `TL;DR — he ships production AI (medical vision, secure LLM stuff, RAG, data platforms) with metrics you can screenshot into a hiring doc. ` +
-                `Ping him: ${k.identity.email} · ${k.identity.links.linkedin}`
-            );
+        // "Why hire" before broader opinion questions
+        if (
+            /why (should i )?hire|why (hire|should)|hire (him|ishva)|reason(s)? to hire|elevator pitch|unique|stand ?out|sell (him|ishva)/.test(norm) ||
+            /why (him|ishva)|make (a )?case|convince me|pitch (him|ishva|me)/.test(norm)
+        ) {
+            return answerWhyHire(k);
         }
 
-        if (/project|built|portfolio|github|repo|demo|skin|rag|tumor|bus|guardian|package/.test(q)) {
-            if (/skin|derma/.test(q)) return projectBlurb("Skin Scan");
-            if (/package|slop|typo/.test(q)) return projectBlurb("Package-Guard");
-            if (/guardian|mcp gateway|prompt inject/.test(q)) return projectBlurb("Guardian-MCP");
-            if (/rag|docuquery|retrieval/.test(q)) return projectBlurb("DocuQuery");
-            if (/goal|gemini|mern/.test(q)) return projectBlurb("Goalsetter");
-            if (/bus|track|socket/.test(q)) return projectBlurb("BusTrack");
-            if (/tumor|mri|brain/.test(q)) return projectBlurb("Brain Tumor");
-            if (/diabetes/.test(q)) return projectBlurb("Diabetes");
-            if (/trading|binance/.test(q)) return projectBlurb("Trading");
-            if (/labor|etl|fininsight|analytics/.test(q)) return projectBlurb("Labor");
-
-            const top = k.projects
-                .slice(0, 6)
-                .map((p) => `• **${p.name}** — ${p.blurb.split("—")[0].trim()}`)
-                .join("\n");
-            return (
-                `Ishva's project shelf is stacked (GitHub: ${k.github.url}):\n\n${top}\n\n` +
-                `Want the deep-dive on one? Say the name — Skin Scan, Package-Guard, RAG, Brain Tumor… I'm ready.`
-            );
+        // Opinion / character / "is he good?" — not the generic snapshot dump
+        if (
+            /what do you think|your (honest )?opinion|how (is|was) he|tell me about (him|ishva)|who is (he|ishva)|describe (him|ishva)/.test(norm) ||
+            /whether (he|ishva)|is he (a )?good|is ishva (a )?good|good (guy|person|candidate|fit|engineer|hire)/.test(norm) ||
+            /worth (hiring|it)|recommend (him|ishva)|should i (interview|shortlist|recommend)|culture fit|personality|character|reliable|trustworth/.test(norm) ||
+            /impressive|legit|solid candidate|red flag|pros and cons|honest review|vibe check/.test(norm)
+        ) {
+            return answerOpinion(norm, k);
         }
 
-        if (/experience|intern|work(ed)?|gravity|acmegrade|job|career/.test(q)) {
-            return (
-                `Work history, no fluff:\n\n` +
-                k.experience
-                    .map(
-                        (e) =>
-                            `**${e.title} @ ${e.company}** (${e.dates})\n` +
-                            e.highlights
-                                .slice(0, 3)
-                                .map((h) => `• ${h}`)
-                                .join("\n")
-                    )
-                    .join("\n\n") +
-                `\n\nMetrics recruiters screenshot: **+25% ETL efficiency**, **98%+ data accuracy**, **30% faster feature cycles**.`
-            );
+        if (/project|built|portfolio|github|repo|demo|skin|rag|tumor|bus|guardian|package|what has he (built|done|shipped)/.test(norm)) {
+            if (/skin|derma/.test(norm)) return projectBlurb("Skin Scan");
+            if (/package|slop|typo/.test(norm)) return projectBlurb("Package-Guard");
+            if (/guardian|mcp gateway|prompt inject/.test(norm)) return projectBlurb("Guardian-MCP");
+            if (/rag|docuquery|retrieval/.test(norm)) return projectBlurb("DocuQuery");
+            if (/goal|gemini|mern/.test(norm)) return projectBlurb("Goalsetter");
+            if (/bus|track|socket/.test(norm)) return projectBlurb("BusTrack");
+            if (/tumor|mri|brain/.test(norm)) return projectBlurb("Brain Tumor");
+            if (/diabetes/.test(norm)) return projectBlurb("Diabetes");
+            if (/trading|binance/.test(norm)) return projectBlurb("Trading");
+            if (/labor|etl|fininsight|analytics/.test(norm)) return projectBlurb("Labor");
+            return answerProjects(k);
         }
 
-        if (/skill|stack|tech|tool|python|pytorch|sql|docker|language|framework/.test(q)) {
-            const groups = Object.entries(k.skills)
-                .map(([g, list]) => `**${g}**: ${list.slice(0, 8).join(", ")}…`)
-                .join("\n");
-            return (
-                `Skill inventory unlocked 🧰\n\n${groups}\n\n` +
-                `Daily drivers: **Python, PyTorch/TF, SQL, FastAPI/Flask, Docker, RAG stack, Tableau/Power BI**. ` +
-                `Basically: train it, serve it, monitor it, explain it to stakeholders.`
-            );
+        if (/experience|intern|work(ed)? at|gravity|acmegrade|career|previous (role|job)|work history/.test(norm)) {
+            return answerExperience(k);
         }
 
-        if (/educat|degree|college|university|cgpa|msc|bsc|master|bachelor|karunya/.test(q)) {
+        if (/skill|stack|tech|tool|python|pytorch|sql|docker|language|framework|what can he do|technical/.test(norm)) {
+            return answerSkills(k);
+        }
+
+        if (/educat|degree|college|university|cgpa|msc|bsc|master|bachelor|karunya|stud(y|ied|ies)/.test(norm)) {
             return (
                 `School arc:\n` +
                 k.education.map((e) => `• **${e.degree}** — ${e.school} (${e.years}) · ${e.gpa}`).join("\n") +
@@ -370,20 +357,11 @@ ${KTEXT()}
             );
         }
 
-        if (/contact|email|phone|reach|linkedin|hire|available|open to|location|where/.test(q)) {
-            return (
-                `Let's make this easy 📩\n` +
-                `• Email: **${k.identity.email}**\n` +
-                `• Phone: **${k.identity.phone}**\n` +
-                `• LinkedIn: ${k.identity.links.linkedin}\n` +
-                `• GitHub: ${k.identity.links.github}\n` +
-                `• Location: ${k.identity.location}\n` +
-                `• Status: **${k.identity.availability}**\n\n` +
-                `Resume is on this page — hit **Preview Resume**. Don't be shy; Ishva actually answers.`
-            );
+        if (/contact|email|phone|reach (him|out)|linkedin|how (do i|to) (reach|contact|email)|available|open to work|location|where (is he|based)/.test(norm)) {
+            return answerContact(k);
         }
 
-        if (/resume|cv|pdf/.test(q)) {
+        if (/resume|cv|pdf/.test(norm)) {
             return (
                 `Resume lives right on this site as **Ishva_Resume_Final.pdf**. ` +
                 `Click **Preview Resume** in the hero/nav for the floating PDF preview, or Download when you're sold. ` +
@@ -391,7 +369,7 @@ ${KTEXT()}
             );
         }
 
-        if (/certif|google|azure|coursera/.test(q)) {
+        if (/certif|google|azure|coursera/.test(norm)) {
             return (
                 `Certifications on file:\n` +
                 k.certifications.map((c) => `• **${c.name}** — ${c.issuer} (${c.year})`).join("\n") +
@@ -399,16 +377,11 @@ ${KTEXT()}
             );
         }
 
-        if (/strength|weak|soft skill|communicat|team/.test(q)) {
-            return (
-                `Strengths I'd put on a recruiter sticky note: full-stack AI ownership, measurable delivery, ` +
-                `security-aware GenAI, and he doesn't ghost cross-functional teams (see Gravity AI collab speedups). ` +
-                `He's early-career hungry — M.Sc. AI + two internships + a loud project portfolio. ` +
-                `Want project receipts? Ask for Skin Scan or Guardian-MCP.`
-            );
+        if (/strength|weak|soft skill|communicat|team|collaborat/.test(norm)) {
+            return answerOpinion(norm, k);
         }
 
-        if (/salary|notice|age|religion|married|personal/.test(q)) {
+        if (/salary|notice period|age|religion|married|girlfriend|family|caste/.test(norm)) {
             return (
                 `That's outside my clearance level 🔒 I only spill professional Ishva intel. ` +
                 `For compensation / logistics, email him directly: **${k.identity.email}**. ` +
@@ -416,12 +389,132 @@ ${KTEXT()}
             );
         }
 
-        // Generic about-Ishva fallback
+        // Soft about-him fallback (still useful, not a copy-paste summary dump)
+        if (/\b(ishva|he|him|his|guy|candidate|engineer|person)\b/.test(norm)) {
+            return answerOpinion(norm, k);
+        }
+
         return (
-            `Here's the snapshot: **${k.identity.fullName}** — ${k.identity.role} from ${k.identity.location}.\n\n` +
-            `${k.summary}\n\n` +
-            `Ask me something sharper: *why hire*, *projects*, *skills*, *experience*, or *contact*. ` +
-            `I'm basically a search engine that only indexes Ishva 😎`
+            `I only speak fluent **Ishva**. Try one of these:\n` +
+            `• *Why should I hire him?*\n` +
+            `• *Is he a good hire?*\n` +
+            `• *Best projects?*\n` +
+            `• *Skills / experience / contact*\n\n` +
+            `I'm basically a search engine that only indexes one human 😎`
+        );
+    }
+
+    function answerWhyHire(k) {
+        const bullets = k.whyHire
+            .slice(0, 5)
+            .map((w, i) => `${i + 1}. ${w}`)
+            .join("\n");
+        return (
+            `Okay recruiter-mode activated ⚡ Here's the clean pitch for **${k.identity.fullName}**:\n\n` +
+            `${bullets}\n\n` +
+            `TL;DR — he ships production AI (medical vision, secure LLM stuff, RAG, data platforms) with metrics you can screenshot into a hiring doc. ` +
+            `Ping him: ${k.identity.email} · ${k.identity.links.linkedin}`
+        );
+    }
+
+    function answerOpinion(q, k) {
+        // Slightly different flavors so it doesn't feel copy-pasted
+        if (/good guy|good person|character|personality|vibe|nice|kind|trust/.test(q)) {
+            return pick([
+                `Professionally? **Yes — hire-energy is strong.** Personally I only know him through the work trail ` +
+                    `(resume, GitHub, LinkedIn), not his coffee order ☕\n\n` +
+                    `What the trail shows: collaborative (Gravity AI: partnered with product/eng for **30% faster feature cycles**), ` +
+                    `obsessed with clean systems, and he actually ships — medical AI, AI security, RAG, data platforms — not vibes-only LinkedIn posts.\n\n` +
+                    `If "good guy" means *good teammate you'd want on a sprint*: the evidence says **shortlist him**. ` +
+                    `Chat human-to-human: ${k.identity.email} · ${k.identity.links.linkedin}`,
+
+                `I can't vouch for his karaoke skills, but as a *professional human*? The receipts slap.\n\n` +
+                    `• Ships real systems (Skin Scan, Guardian-MCP, RAG, ETL)\n` +
+                    `• Metrics, not buzzwords (**95%** MRI accuracy, **+25%** ETL, **98%+** data accuracy)\n` +
+                    `• Plays well with teams (internships + cross-functional delivery)\n\n` +
+                    `So: good engineer energy + coachable early-career hunger. Interview him — you'll feel it faster than reading my monologue.`
+            ]);
+        }
+
+        if (/what do you think|opinion|honest|review|recommend|worth|impressive|legit|solid|red flag|pros|should i (interview|shortlist|recommend)/.test(q)) {
+            return (
+                `Honest bot take (no corporate perfume):\n\n` +
+                `**Ishva is a strong early-career AI/ML hire** — not "10 years FAANG," but *dangerous-in-a-good-way* for a team that wants builders.\n\n` +
+                `✅ Full loop: models → APIs → Docker → metrics\n` +
+                `✅ Breadth: medical vision, AI security, GenAI/RAG, data eng\n` +
+                `✅ Proof: internships at **Gravity AI** & **Acmegrade** + public GitHub heat\n` +
+                `✅ Academics that match the stack: M.Sc. AI **8.2**, B.Sc. CS **8.75**\n\n` +
+                `🚩 Only "flag": he's early-career — which is either a dealbreaker or a *steal*, depending on your level band.\n\n` +
+                `My vote: **interview him**. Worst case you meet someone who actually ships. ` +
+                `Best case you hire the person who makes your AI roadmap less theoretical.\n` +
+                `${k.identity.email} · ${k.identity.links.linkedin} · ${k.identity.links.github}`
+            );
+        }
+
+        // "tell me about him" / general
+        return pick([
+            `Alright, unfiltered scout report on **${k.identity.fullName}**:\n\n` +
+                `He's an **${k.identity.role}** from ${k.identity.location} who treats AI like a *product*, not a weekend notebook. ` +
+                `Think medical vision (**~95%** tumor MRI story), zero-trust LLM/MCP security, production RAG, and data pipelines that moved real internship metrics (**+25%** ETL, **98%+** accuracy).\n\n` +
+                `Education: M.Sc. AI (8.2) + B.Sc. CS (8.75) at Karunya. Status: **${k.identity.availability}**.\n\n` +
+                `Want the spicy pitch, project deep-dive, or contact card?`,
+
+            `Imagine a junior-ish engineer who already talks in *shipped systems* and *percentages*. That's Ishva.\n\n` +
+                `${k.summary}\n\n` +
+                `GitHub: ${k.github.url} · LinkedIn: ${k.linkedin.url}\n` +
+                `Ask me *why hire*, *best projects*, or *is he a good fit* — I came prepared.`
+        ]);
+    }
+
+    function answerProjects(k) {
+        const top = k.projects
+            .slice(0, 6)
+            .map((p) => `• **${p.name}** — ${p.blurb.split("—")[0].trim()}`)
+            .join("\n");
+        return (
+            `Ishva's project shelf is stacked (GitHub: ${k.github.url}):\n\n${top}\n\n` +
+            `Want the deep-dive on one? Say the name — Skin Scan, Package-Guard, RAG, Brain Tumor… I'm ready.`
+        );
+    }
+
+    function answerExperience(k) {
+        return (
+            `Work history, no fluff:\n\n` +
+            k.experience
+                .map(
+                    (e) =>
+                        `**${e.title} @ ${e.company}** (${e.dates})\n` +
+                        e.highlights
+                            .slice(0, 3)
+                            .map((h) => `• ${h}`)
+                            .join("\n")
+                )
+                .join("\n\n") +
+            `\n\nMetrics recruiters screenshot: **+25% ETL efficiency**, **98%+ data accuracy**, **30% faster feature cycles**.`
+        );
+    }
+
+    function answerSkills(k) {
+        const groups = Object.entries(k.skills)
+            .map(([g, list]) => `**${g}**: ${list.slice(0, 8).join(", ")}…`)
+            .join("\n");
+        return (
+            `Skill inventory unlocked 🧰\n\n${groups}\n\n` +
+            `Daily drivers: **Python, PyTorch/TF, SQL, FastAPI/Flask, Docker, RAG stack, Tableau/Power BI**. ` +
+            `Basically: train it, serve it, monitor it, explain it to stakeholders.`
+        );
+    }
+
+    function answerContact(k) {
+        return (
+            `Let's make this easy 📩\n` +
+            `• Email: **${k.identity.email}**\n` +
+            `• Phone: **${k.identity.phone}**\n` +
+            `• LinkedIn: ${k.identity.links.linkedin}\n` +
+            `• GitHub: ${k.identity.links.github}\n` +
+            `• Location: ${k.identity.location}\n` +
+            `• Status: **${k.identity.availability}**\n\n` +
+            `Resume is on this page — hit **Preview Resume**. Don't be shy; Ishva actually answers.`
         );
     }
 
