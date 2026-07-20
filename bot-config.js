@@ -1,17 +1,19 @@
 /* =========================================================
-   HireMe Bot — API config
-   Offline mode works without a key (funny local answers).
-   To enable live AI replies (SpaceXAI / xAI OpenAI-compatible):
-     1. Get a key at https://console.x.ai
-     2. Set enabled: true and paste apiKey below
-     3. Prefer keeping secrets out of public commits
+   HireMe Bot — public config (NO secrets)
+   Live AI: put your key in bot-config.local.js (gitignored)
+   or set enabled + apiKey here only on private deploys.
+   OpenRouter: https://openrouter.ai
    ========================================================= */
 
 window.ISHVA_BOT_CONFIG = {
     enabled: false,
-    endpoint: "https://api.x.ai/v1/chat/completions",
-    model: "grok-4.5",
+    endpoint: "https://openrouter.ai/api/v1/chat/completions",
+    model: "openai/gpt-4o-mini",
     apiKey: "",
-    maxTokens: 450,
-    temperature: 0.85
+    maxTokens: 420,
+    temperature: 0.95,
+    headers: {
+        "HTTP-Referer": "https://ishva24.github.io/Portfolio_New/",
+        "X-Title": "Ishva HireMe Bot"
+    }
 };

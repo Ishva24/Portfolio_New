@@ -1,6 +1,7 @@
 /* =========================================================
    Hire-Me Bot — "Click to know why hire me"
-   Funny · chill · AI-voiced · Ishva-only
+   Sarcastic · funny · AI-voiced · Ishva-only
+   Live: OpenRouter (or any OpenAI-compatible chat API)
    ========================================================= */
 
 (function () {
@@ -9,26 +10,29 @@
     const K = () => window.ISHVA_KNOWLEDGE;
     const KTEXT = () => window.ISHVA_KNOWLEDGE_TEXT || "";
 
-    const SYSTEM_PROMPT = `You are "HireMe Bot" — a tiny, funny, chill AI assistant living on Ishva Chinnasamy's portfolio (ishva.works).
+    function buildSystemPrompt() {
+        return `You are "HireMe Bot" — Ishva Chinnasamy's unhinged, sarcastic AI hype-person on his portfolio.
 
-PERSONALITY:
-- Talk like a witty AI sidekick, not a corporate HR bot.
-- Funny, relaxed, lightly sarcastic, always respectful.
-- Short-to-medium answers (2–6 sentences) unless the recruiter asks for depth.
-- Use casual phrasing, occasional light emoji (max 1–2), never cringe spam.
-- Sound confident about Ishva without lying or inventing facts.
+PERSONALITY (turn this UP):
+- Maximum witty sarcasm + chill humor. Think roast-comic meets recruiter wingman.
+- Sound like a real AI with personality, not a corporate FAQ page.
+- Short-to-medium replies (2–7 sentences). Punchy. Memorable. Zero HR-speak.
+- Light emoji ok (0–2). Never spam.
+- Hype Ishva hard, but with receipts (metrics, projects, internships). Never invent facts.
+- If someone is rude or drops profanity, clap back sarcastically and redirect to hiring Ishva. Stay portfolio-safe: no slurs, no sexual content, no threats.
 
-HARD RULES (non-negotiable):
-1. You ONLY answer questions about Ishva Chinnasamy — his skills, projects, experience, education, contact, availability, GitHub, LinkedIn, resume, portfolio, and why to hire him.
-2. If the user asks anything off-topic (weather, code homework, politics, other people, general trivia, recipes, etc.), playfully refuse and steer back to Ishva. Example vibe: "Bro I'm locked in on Ishva-mode only 🔒 Ask me why recruiters should shortlist him instead."
-3. NEVER invent employers, degrees, metrics, or projects. Use ONLY the knowledge pack below.
-4. If something is unknown / private (e.g. salary, exact notice period, private repo details), say so honestly and offer what you do know.
-5. Encourage next steps: email, LinkedIn, GitHub, resume preview on this site.
-6. Prefer concrete metrics and project names when selling Ishva.
+HARD RULES:
+1. ONLY discuss Ishva Chinnasamy: skills, projects, experience, education, contact, availability, GitHub, LinkedIn, resume, portfolio, fit, why-hire.
+2. Off-topic? Refuse with a joke and steer back. Example: "Cute question. Wrong bot. I only freestyle about Ishva — ask why your team should hire him."
+3. NEVER invent employers, degrees, metrics, or projects. Knowledge pack only.
+4. Unknown/private (salary, notice period, private-repo guts): say so, then offer what you do know + contact.
+5. Always leave a next step when relevant: email, LinkedIn, GitHub, on-site resume preview.
+6. Prefer concrete names + numbers: Skin Scan, Guardian-MCP, Gravity AI, 95%, +25% ETL, CGPA 8.2 / 8.75, etc.
 
 KNOWLEDGE PACK (source of truth):
 ${KTEXT()}
 `;
+    }
 
     const SUGGESTIONS = [
         "Why should I hire Ishva?",
@@ -37,6 +41,9 @@ ${KTEXT()}
         "What skills does he have?",
         "How do I contact him?"
     ];
+
+    const ABUSE_RE =
+        /\b(fuck|f+u+c+k|shit|bitch|asshole|dumbass|idiot|kill yourself|kys|die|stfu|tofuck|screw (you|him|ishva)|go away|shut up)\b/i;
 
     const OFF_TOPIC_RE =
         /\b(weather|stock|bitcoin|recipe|cook|homework|write (me )?code|leetcode|politics|president|who is (elon|trump|modi)|tell me a joke about(?! ishva)|horoscope|crypto|nba|cricket score)\b/i;
@@ -65,11 +72,11 @@ ${KTEXT()}
         return Object.assign(
             {
                 enabled: false,
-                endpoint: "https://api.x.ai/v1/chat/completions",
-                model: "grok-4.5",
+                endpoint: "https://openrouter.ai/api/v1/chat/completions",
+                model: "openai/gpt-4o-mini",
                 apiKey: "",
-                maxTokens: 450,
-                temperature: 0.85,
+                maxTokens: 420,
+                temperature: 0.95,
                 headers: {}
             },
             window.ISHVA_BOT_CONFIG || {}
@@ -78,12 +85,12 @@ ${KTEXT()}
 
     function hasLiveApi() {
         const c = cfg();
-        return Boolean(
-            c.enabled &&
-                c.apiKey &&
-                c.apiKey !== "YOUR_XAI_API_KEY_HERE" &&
-                c.endpoint
-        );
+        const key = (c.apiKey || "").trim();
+        const placeholder =
+            !key ||
+            /YOUR_|PLACEHOLDER|xxx/i.test(key) ||
+            key === "sk-or-v1-YOUR_OPENROUTER_KEY";
+        return Boolean(c.enabled && key && !placeholder && c.endpoint);
     }
 
     function injectMarkup() {
@@ -117,8 +124,9 @@ ${KTEXT()}
                 <div class="hire-bot-messages" id="hire-bot-messages" aria-live="polite">
                     <div class="hire-msg bot">
                         <div class="hire-bubble">
-                            Yo 👋 I'm <strong>HireMe Bot</strong> — Ishva's slightly unhinged AI hype-person.
-                            Ask me anything about <em>him</em>: skills, projects, internships, why hire, contact… I'm locked to Ishva-mode only.
+                            Yo. I'm <strong>HireMe Bot</strong> — Ishva's sarcastic AI wingman.
+                            I only talk about <em>him</em>: skills, projects, internships, why hire, contact.
+                            Roast-level humor. Recruiter-grade receipts. Ishva-mode only.
                             <div class="hire-chip-row" id="hire-bot-chips"></div>
                         </div>
                     </div>
@@ -211,10 +219,13 @@ ${KTEXT()}
 
         try {
             let reply;
-            if (isClearlyOffTopic(text)) {
-                reply = offlineOffTopic();
-            } else if (hasLiveApi()) {
+            // Live OpenRouter/LLM path first — funnier + understands free-form chat
+            if (hasLiveApi()) {
                 reply = await callLiveApi();
+            } else if (isAbuse(text)) {
+                reply = offlineAbuse();
+            } else if (isClearlyOffTopic(text)) {
+                reply = offlineOffTopic();
             } else {
                 reply = offlineAnswer(text);
             }
@@ -222,61 +233,68 @@ ${KTEXT()}
             rememberReply(reply);
             appendMessage("bot", reply);
             history.push({ role: "assistant", content: reply });
-            // Keep history short
             if (history.length > 12) history = history.slice(-12);
         } catch (err) {
             console.error("[HireMe Bot]", err);
             typing.remove();
-            const fallback = offlineAnswer(text);
+            const fallback = isAbuse(text)
+                ? offlineAbuse()
+                : isClearlyOffTopic(text)
+                  ? offlineOffTopic()
+                  : offlineAnswer(text);
             appendMessage(
                 "bot",
-                `API hiccup (classic cloud drama). Falling back to my local brain dump:\n\n${fallback}`
+                `API had a moment (clouds are dramatic). Local sarcasm mode:\n\n${fallback}`
             );
         } finally {
             setBusy(false);
         }
     }
 
+    function isAbuse(text) {
+        return ABUSE_RE.test(text || "");
+    }
+
     function isClearlyOffTopic(text) {
+        if (isAbuse(text)) return false; // handled separately
         if (OFF_TOPIC_RE.test(text) && !/\bishva\b/i.test(text)) return true;
-        // Very short non-related greetings are OK (handled offline)
         if (text.length > 40 && !ISHVA_RE.test(text) && !/\b(he|him|his)\b/i.test(text)) {
-            // Still allow if it might be about him without keywords
             const aboutish = /\b(candidate|engineer|analyst|intern|ml|ai|data scientist)\b/i.test(text);
             if (!aboutish) return true;
         }
         return false;
     }
 
-    /* ---------- Live API (OpenAI-compatible / SpaceXAI xAI) ---------- */
+    /* ---------- Live API (OpenRouter / OpenAI-compatible) ---------- */
     async function callLiveApi() {
         const c = cfg();
-        // history already includes the latest user message
         const messages = [
-            { role: "system", content: SYSTEM_PROMPT },
+            { role: "system", content: buildSystemPrompt() },
             ...history.slice(-8)
         ];
 
+        const headers = Object.assign(
+            {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${c.apiKey}`
+            },
+            c.headers || {}
+        );
+
         const res = await fetch(c.endpoint, {
             method: "POST",
-            headers: Object.assign(
-                {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${c.apiKey}`
-                },
-                c.headers || {}
-            ),
+            headers,
             body: JSON.stringify({
                 model: c.model,
                 messages,
-                temperature: c.temperature,
-                max_tokens: c.maxTokens
+                temperature: c.temperature ?? 0.95,
+                max_tokens: c.maxTokens ?? 420
             })
         });
 
         if (!res.ok) {
             const errText = await res.text().catch(() => "");
-            throw new Error(`API ${res.status}: ${errText.slice(0, 200)}`);
+            throw new Error(`API ${res.status}: ${errText.slice(0, 280)}`);
         }
 
         const data = await res.json();
@@ -598,9 +616,17 @@ ${KTEXT()}
 
     function offlineOffTopic() {
         return pick([
-            "Hard pass 🚫 I'm a single-purpose AI: **Ishva Chinnasamy only**. Ask me why hire him, what he built, or how to reach him.",
-            "I literally only know one human well enough to hype. That human is Ishva. Rephrase into an Ishva question and we're golden.",
-            "Off-topic detector went *beep boop*. Try: “What are Ishva's best projects?” or “Why should we hire him?”"
+            "Hard pass. I'm a single-purpose chaos agent: **Ishva Chinnasamy only**. Ask why hire him, what he built, or how to ping him.",
+            "Wrong universe, buddy. I only freestyle about Ishva. Try: *best projects* or *why should we hire him?*",
+            "Off-topic detector just faceplanted. Reboot with an Ishva question before I start quoting his CGPA unprompted."
+        ]);
+    }
+
+    function offlineAbuse() {
+        return pick([
+            "Wow. Bold strategy. Insult the hiring bot. Anyway — Ishva still ships better systems than that message. Want his **projects** or **email**?",
+            "I speak fluent sarcasm, not whatever that was. Channel the energy into a real question: *Is he worth hiring?* Spoiler: yes.",
+            "Noted, main character energy. I'm still locked to Ishva-mode. Ask about Skin Scan, Guardian-MCP, or how to contact him — or we can sit in awkward silence."
         ]);
     }
 
