@@ -895,11 +895,14 @@ console.log(ishva.status);</code></pre>
                 </div>
             </header>
             <div class="resume-modal-body">
-                <iframe id="resume-iframe" title="Resume preview" loading="lazy"></iframe>
+                <!-- object is more reliable than iframe for PDF preview (Chrome/Edge) -->
+                <object id="resume-object" type="application/pdf" data="" aria-label="Resume PDF preview">
+                    <iframe id="resume-iframe" title="Resume preview"></iframe>
+                </object>
                 <div class="resume-fallback" id="resume-fallback" hidden>
                     <i class="fas fa-file-pdf"></i>
-                    <p>Preview couldn't load in this browser.</p>
-                    <a href="Ishva_Resume_Final.pdf" class="btn btn-primary" download>
+                    <p>If the preview is blank, use Download — some browsers block embedded PDFs on local files.</p>
+                    <a href="Ishva_Resume_Final.pdf" class="btn btn-primary" id="resume-fallback-download" download>
                         <i class="fas fa-download"></i> Download Resume
                     </a>
                 </div>

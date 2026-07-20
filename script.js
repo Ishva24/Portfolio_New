@@ -294,41 +294,77 @@ function initBentoSpotlight() {
 /* --- Floating resume preview modal --- */
 function initResumePreview() {
     const modal = document.getElementById("resume-modal");
+    const objectEl = document.getElementById("resume-object");
     const iframe = document.getElementById("resume-iframe");
     const fallback = document.getElementById("resume-fallback");
     const downloadBtn = document.getElementById("resume-download-btn");
+    const fallbackDownload = document.getElementById("resume-fallback-download");
     const triggers = document.querySelectorAll(".js-resume-preview");
 
-    if (!modal || !iframe || !triggers.length) return;
+    if (!modal || !triggers.length) return;
 
     let lastFocus = null;
     const defaultResume = "Ishva_Resume_Final.pdf";
+
+    const hideFallback = () => {
+        if (!fallback) return;
+        fallback.hidden = true;
+        fallback.classList.remove("is-visible");
+    };
+
+    const showFallback = () => {
+        if (!fallback) return;
+        fallback.hidden = false;
+        fallback.classList.add("is-visible");
+    };
+
+    const setResumeSrc = (src) => {
+        // Hash params help Chrome/Edge PDF viewer layout; bust cache on reopen
+        const withHash = `${src}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
+        const cacheBusted = `${src}${src.includes("?") ? "&" : "?"}t=${Date.now()}#toolbar=1&navpanes=0&scrollbar=1&view=FitH`;
+
+        if (objectEl) {
+            // object prefers clean path; some browsers ignore hash on object.data
+            objectEl.setAttribute("data", withHash);
+            objectEl.setAttribute("type", "application/pdf");
+        }
+        if (iframe) {
+            iframe.src = cacheBusted;
+        }
+    };
+
+    const clearResumeSrc = () => {
+        if (objectEl) objectEl.setAttribute("data", "");
+        if (iframe) iframe.src = "about:blank";
+    };
 
     const openModal = (resumePath) => {
         const src = resumePath || defaultResume;
         lastFocus = document.activeElement;
 
         if (downloadBtn) downloadBtn.setAttribute("href", src);
+        if (fallbackDownload) fallbackDownload.setAttribute("href", src);
 
-        iframe.removeAttribute("hidden");
-        if (fallback) fallback.hidden = true;
-
-        // Cache-bust so latest PDF always shows
-        iframe.src = `${src}#toolbar=1&navpanes=0&view=FitH`;
+        // Never auto-show the error overlay — iframe "error" fires falsely for PDFs
+        // (especially on file://). The PDF viewer often still renders underneath.
+        hideFallback();
+        setResumeSrc(src);
 
         modal.hidden = false;
         modal.setAttribute("aria-hidden", "false");
         document.body.classList.add("resume-modal-open");
 
-        const closeBtn = modal.querySelector("[data-resume-close]");
+        const closeBtn = modal.querySelector(".resume-close-btn");
         if (closeBtn) closeBtn.focus();
     };
 
     const closeModal = () => {
+        if (modal.hidden) return;
         modal.hidden = true;
         modal.setAttribute("aria-hidden", "true");
         document.body.classList.remove("resume-modal-open");
-        iframe.src = "";
+        clearResumeSrc();
+        hideFallback();
         if (lastFocus && typeof lastFocus.focus === "function") {
             lastFocus.focus();
         }
@@ -336,7 +372,7 @@ function initResumePreview() {
 
     triggers.forEach((el) => {
         el.addEventListener("click", (e) => {
-            // Keep true file download available via middle-click / modified click
+            // Keep true file open/download for modified clicks
             if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
             e.preventDefault();
             openModal(el.dataset.resume || el.getAttribute("href") || defaultResume);
@@ -352,10 +388,5 @@ function initResumePreview() {
             e.preventDefault();
             closeModal();
         }
-    });
-
-    iframe.addEventListener("error", () => {
-        iframe.setAttribute("hidden", "");
-        if (fallback) fallback.hidden = false;
     });
 }

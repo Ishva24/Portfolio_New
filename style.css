@@ -1827,22 +1827,38 @@ h1, h2, h3, h4 {
     background: #0a0a12;
 }
 
+.resume-modal-body object,
 .resume-modal-body iframe {
+    display: block;
     width: 100%;
     height: 100%;
     border: 0;
     background: #111;
 }
 
+/* Never let author display: rules un-hide [hidden] content */
+.resume-fallback[hidden],
+#resume-fallback[hidden] {
+    display: none !important;
+}
+
 .resume-fallback {
     position: absolute;
     inset: 0;
-    display: grid;
+    z-index: 2;
+    display: none;
     place-content: center;
     gap: 0.85rem;
     text-align: center;
     color: var(--text-muted);
     padding: 2rem;
+    background: rgba(10, 10, 18, 0.92);
+    pointer-events: none;
+}
+
+.resume-fallback.is-visible {
+    display: grid;
+    pointer-events: auto;
 }
 
 .resume-fallback i {
