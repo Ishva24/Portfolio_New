@@ -2105,4 +2105,428 @@ body.resume-modal-open {
     .marquee-track {
         animation: none;
     }
+
+    .hire-bot-pulse,
+    .hire-bot-launcher-glow {
+        animation: none !important;
+    }
+}
+
+/* =========================================================
+   HireMe Bot — floating chat widget
+   ========================================================= */
+#hire-bot {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 1100;
+    font-family: var(--font-body);
+}
+
+.hire-bot-launcher {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: min(320px, calc(100vw - 40px));
+    padding: 0.7rem 1rem 0.7rem 0.7rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(139, 108, 255, 0.45);
+    background: linear-gradient(135deg, rgba(18, 18, 28, 0.96), rgba(14, 14, 22, 0.98));
+    color: var(--text);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(61, 255, 168, 0.08), 0 0 30px rgba(139, 108, 255, 0.18);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+
+.hire-bot-launcher:hover {
+    transform: translateY(-2px) scale(1.02);
+    border-color: rgba(61, 255, 168, 0.5);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 108, 255, 0.28);
+}
+
+.hire-bot-launcher.is-open {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+.hire-bot-launcher-glow {
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle at 30% 40%, rgba(139, 108, 255, 0.25), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(61, 255, 168, 0.12), transparent 50%);
+    animation: hireGlow 4s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.hire-bot-launcher-icon {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, var(--primary), #5b3fd4);
+    color: #fff;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 18px rgba(139, 108, 255, 0.45);
+}
+
+.hire-bot-launcher-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.hire-bot-launcher-text strong {
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.hire-bot-launcher-text small {
+    color: var(--text-dim);
+    font-size: 0.72rem;
+}
+
+.hire-bot-pulse {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(61, 255, 168, 0.55);
+    animation: hirePulse 2s ease-out infinite;
+}
+
+.hire-bot-panel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: min(380px, calc(100vw - 28px));
+    height: min(560px, calc(100vh - 100px));
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(139, 108, 255, 0.12);
+    overflow: hidden;
+    animation: hirePanelIn 0.28s var(--ease);
+}
+
+.hire-bot-panel[hidden] {
+    display: none !important;
+}
+
+.hire-bot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(139, 108, 255, 0.12), transparent);
+    flex-shrink: 0;
+}
+
+.hire-bot-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
+}
+
+.hire-bot-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, var(--primary), #4a32b0);
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.hire-bot-header h2 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.hire-bot-status {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    margin-top: 0.15rem;
+}
+
+.hire-bot-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    flex-shrink: 0;
+}
+
+.hire-bot-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-card);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.hire-bot-close:hover {
+    background: rgba(255, 80, 80, 0.15);
+    border-color: rgba(255, 80, 80, 0.4);
+    color: #ff9b9b;
+}
+
+.hire-bot-messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    scroll-behavior: smooth;
+}
+
+.hire-msg {
+    display: flex;
+    max-width: 92%;
+}
+
+.hire-msg.user {
+    align-self: flex-end;
+}
+
+.hire-msg.bot {
+    align-self: flex-start;
+}
+
+.hire-bubble {
+    padding: 0.7rem 0.85rem;
+    border-radius: 14px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text);
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+.hire-msg.bot .hire-bubble {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 5px;
+}
+
+.hire-msg.user .hire-bubble {
+    background: linear-gradient(135deg, rgba(139, 108, 255, 0.85), #5b3fd4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom-right-radius: 5px;
+    color: #fff;
+}
+
+.hire-bubble a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.hire-msg.user .hire-bubble a {
+    color: #d9fff0;
+}
+
+.hire-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.7rem;
+}
+
+.hire-chip {
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(139, 108, 255, 0.35);
+    background: rgba(139, 108, 255, 0.1);
+    color: var(--text);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.hire-chip:hover {
+    background: rgba(139, 108, 255, 0.22);
+    border-color: var(--primary);
+}
+
+.hire-bot-form {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 0.85rem 0.35rem;
+    border-top: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.hire-bot-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-strong);
+    background: var(--bg-card);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hire-bot-form input:focus {
+    border-color: rgba(139, 108, 255, 0.65);
+    box-shadow: 0 0 0 3px rgba(139, 108, 255, 0.15);
+}
+
+.hire-bot-form input:disabled {
+    opacity: 0.65;
+}
+
+.hire-bot-send {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(145deg, var(--primary), #5b3fd4);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 6px 18px rgba(139, 108, 255, 0.35);
+}
+
+.hire-bot-send:hover:not(:disabled) {
+    transform: scale(1.06);
+}
+
+.hire-bot-send:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.hire-bot-footnote {
+    padding: 0 1rem 0.65rem;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Typing dots */
+.hire-typing .hire-bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.85rem 1rem;
+}
+
+.hire-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    animation: hireTyping 1.1s ease-in-out infinite;
+}
+
+.hire-dot:nth-child(2) { animation-delay: 0.15s; }
+.hire-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes hirePulse {
+    0% { box-shadow: 0 0 0 0 rgba(61, 255, 168, 0.55); }
+    70% { box-shadow: 0 0 0 12px rgba(61, 255, 168, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(61, 255, 168, 0); }
+}
+
+@keyframes hireGlow {
+    from { opacity: 0.65; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes hirePanelIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes hireTyping {
+    0%, 80%, 100% { opacity: 0.35; transform: translateY(0); }
+    40% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* Avoid custom cursor fighting the chat inputs */
+body.hire-bot-hover.has-custom-cursor,
+body.hire-bot-hover.has-custom-cursor a,
+body.hire-bot-hover.has-custom-cursor button,
+body.hire-bot-hover.has-custom-cursor input {
+    cursor: auto;
+}
+
+@media (max-width: 480px) {
+    #hire-bot {
+        left: 12px;
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .hire-bot-launcher {
+        width: 100%;
+        max-width: none;
+    }
+
+    .hire-bot-launcher-text strong {
+        white-space: normal;
+        font-size: 0.84rem;
+    }
+
+    .hire-bot-panel {
+        width: 100%;
+        height: min(70vh, 560px);
+        left: 0;
+        right: 0;
+    }
+
+    /* Keep back-to-top clear of the launcher */
+    .back-to-top {
+        bottom: 88px;
+    }
 }

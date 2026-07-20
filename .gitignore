@@ -1,3 +1,8 @@
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+# Local secrets (if you put a real API key in a private override)
+.env
+.env.*
+bot-config.local.js
