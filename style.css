@@ -1660,6 +1660,20 @@ h1, h2, h3, h4 {
     background: var(--primary-soft);
 }
 
+/* --- Project private-repo note --- */
+.link-note {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-dim);
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-full);
+    border: 1px dashed var(--border-strong);
+    background: rgba(255, 255, 255, 0.02);
+}
+
 /* --- Back to top --- */
 .back-to-top {
     position: fixed;
@@ -1691,6 +1705,169 @@ h1, h2, h3, h4 {
     background: var(--primary);
     border-color: var(--primary);
     color: #fff;
+}
+
+/* --- Resume floating preview modal --- */
+.resume-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+}
+
+.resume-modal[hidden] {
+    display: none !important;
+}
+
+.resume-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 4, 10, 0.72);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: resumeFadeIn 0.25s var(--ease);
+}
+
+.resume-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(920px, 100%);
+    height: min(88vh, 920px);
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(139, 108, 255, 0.12);
+    overflow: hidden;
+    animation: resumeSlideIn 0.32s var(--ease);
+}
+
+.resume-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(139, 108, 255, 0.08), transparent);
+    flex-shrink: 0;
+}
+
+.resume-modal-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+}
+
+.resume-modal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.7rem;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 80, 80, 0.12);
+    color: #ff8f8f;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.resume-modal-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.resume-modal-sub {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+}
+
+.resume-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+}
+
+.resume-download-btn {
+    padding: 0.55rem 0.95rem !important;
+    font-size: 0.85rem !important;
+}
+
+.resume-close-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--bg-card);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    transition: var(--transition);
+}
+
+.resume-close-btn:hover {
+    background: rgba(255, 80, 80, 0.15);
+    border-color: rgba(255, 80, 80, 0.4);
+    color: #ff9b9b;
+}
+
+.resume-modal-body {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: #0a0a12;
+}
+
+.resume-modal-body iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #111;
+}
+
+.resume-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: 0.85rem;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem;
+}
+
+.resume-fallback i {
+    font-size: 2.5rem;
+    color: #ff8f8f;
+}
+
+body.resume-modal-open {
+    overflow: hidden;
+}
+
+@keyframes resumeFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes resumeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 /* --- Responsive --- */
@@ -1753,6 +1930,33 @@ h1, h2, h3, h4 {
 }
 
 @media (max-width: 768px) {
+    .resume-modal {
+        padding: 0.5rem;
+    }
+
+    .resume-modal-panel {
+        height: min(94vh, 100%);
+        border-radius: var(--radius);
+    }
+
+    .resume-modal-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .resume-modal-actions {
+        justify-content: space-between;
+    }
+
+    .resume-download-btn span {
+        display: inline;
+    }
+
+    .resume-modal-header h2 {
+        font-size: 0.95rem;
+    }
+
     .mobile-menu-btn {
         display: grid;
     }

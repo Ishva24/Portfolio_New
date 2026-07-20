@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initCustomCursor();
     initMagneticButtons();
     initBentoSpotlight();
+    initResumePreview();
 });
 
 /* --- AOS --- */
@@ -287,5 +288,74 @@ function initBentoSpotlight() {
             card.style.setProperty("--mx", `${x}%`);
             card.style.setProperty("--my", `${y}%`);
         });
+    });
+}
+
+/* --- Floating resume preview modal --- */
+function initResumePreview() {
+    const modal = document.getElementById("resume-modal");
+    const iframe = document.getElementById("resume-iframe");
+    const fallback = document.getElementById("resume-fallback");
+    const downloadBtn = document.getElementById("resume-download-btn");
+    const triggers = document.querySelectorAll(".js-resume-preview");
+
+    if (!modal || !iframe || !triggers.length) return;
+
+    let lastFocus = null;
+    const defaultResume = "Ishva_Resume_Final.pdf";
+
+    const openModal = (resumePath) => {
+        const src = resumePath || defaultResume;
+        lastFocus = document.activeElement;
+
+        if (downloadBtn) downloadBtn.setAttribute("href", src);
+
+        iframe.removeAttribute("hidden");
+        if (fallback) fallback.hidden = true;
+
+        // Cache-bust so latest PDF always shows
+        iframe.src = `${src}#toolbar=1&navpanes=0&view=FitH`;
+
+        modal.hidden = false;
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("resume-modal-open");
+
+        const closeBtn = modal.querySelector("[data-resume-close]");
+        if (closeBtn) closeBtn.focus();
+    };
+
+    const closeModal = () => {
+        modal.hidden = true;
+        modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("resume-modal-open");
+        iframe.src = "";
+        if (lastFocus && typeof lastFocus.focus === "function") {
+            lastFocus.focus();
+        }
+    };
+
+    triggers.forEach((el) => {
+        el.addEventListener("click", (e) => {
+            // Keep true file download available via middle-click / modified click
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+            e.preventDefault();
+            openModal(el.dataset.resume || el.getAttribute("href") || defaultResume);
+        });
+    });
+
+    modal.querySelectorAll("[data-resume-close]").forEach((el) => {
+        el.addEventListener("click", closeModal);
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.hidden) {
+            e.preventDefault();
+            closeModal();
+        }
+    });
+
+    iframe.addEventListener("error", () => {
+        iframe.setAttribute("hidden", "");
+        if (fallback) fallback.hidden = false;
     });
 }
